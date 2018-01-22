@@ -54,13 +54,15 @@ if($request=="updateAccountViaID"){
 	$gender= addslashes($_POST['gender']);
 	$password = addslashes($_POST['password']);
 	$id = addslashes($_POST['id']);
+	$mobile_number = addslashes($_POST['mobile_number']);
 	$sql = "Update accounts set 
 			firstname= '$fname', 
 			lastname='$lname', 
 			mi = '$mi', 
 			birthday ='$birthday', 
 			gender ='$gender', 
-			password = '$password'
+			password = '$password',
+			mobile_number = '$mobile_number'
 			where id ='$id'";
 	if(mysqli_query($conn,$sql)){
 		echo json_encode(array('code'=>200,'msg'=>'Account Successfully Updated!'));

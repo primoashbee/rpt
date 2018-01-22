@@ -45,23 +45,27 @@ checkIfLoggedInAdmin();
                   ?>
                     <h3> Personal Information </h3>
 
-                    <div class="col-xs-12 col-md-6 col-lg-6 form-group" id="divUsername">
+                    <div class="col-xs-12 col-md-4 col-lg-4 form-group" id="divUsername">
                       <label class="labeling" for="username" id="lblUsername">Username</label>
                       <input class="form-control" type="text" id="username" name="username" required="">
                     </div>
-                    <div class="col-xs-12 col-md-6 col-lg-6 form-group">
+                    <div class="col-xs-12 col-md-4 col-lg-4 form-group">
                       <label class="labeling" for="firstname">Firstname</label>
                       <input class="form-control" type="text" id="firstname" name="firstname"  required="">
                     </div>                
-                    <div class="col-xs-12 col-md-6 col-lg-6 form-group">
+                    <div class="col-xs-12 col-md-4 col-lg-4 form-group">
                       <label class="labeling" for="lastname">Lastname</label>
                       <input class="form-control" type="text" id="lastname" name="lastname"  required="">
                     </div>                
-                    <div class="col-xs-12 col-md-1 col-lg-2 form-group">
+                    <div class="col-xs-12 col-md-4 col-lg-4 form-group">
+                      <label class="labeling" for="mobile_number">Mobile Number</label>
+                      <input class="form-control" type="text" id="mobile_number" name="mobile_number"  required="">
+                    </div>                
+                    <div class="col-xs-12 col-md-2 col-lg-2 form-group">
                       <label class="labeling" for="mi">Middle Initial</label>
                       <input class="form-control" type="text" id="mi" name="mi" >
                     </div>                  
-                    <div class="col-xs-12 col-md-4 col-lg-2 form-group">
+                    <div class="col-xs-12 col-md-4 col-lg-4 form-group">
                       <label class="labeling" for="birthday">Birthday</label>
                       <input class="form-control" type="date" id="birthday" name="birthday"  required="">
                     </div>                                  

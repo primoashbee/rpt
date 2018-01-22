@@ -131,8 +131,10 @@ checkIfLoggedInAdmin();
                       </select>
                     </div>                
                     <div class="clearfix"></div>
-                    <hr>
-                    <h3> Account Information </h3>  
+                    <div class="col-xs-12 col-md-4 col-lg-4 form-group divPassword">
+                      <label class="labeling" for="mobile_number" >Mobile Number</label>
+                      <input class="form-control" type="text" id="mobile_number" name="mobile_number"  required="">
+                    </div>
                     <div class="col-xs-12 col-md-4 col-lg-4 form-group divPassword">
                       <label class="labeling" for="password" id="lblPassword">Password</label>
                       <input class="form-control" type="password" id="password" name="password"  required="">
@@ -191,6 +193,7 @@ checkIfLoggedInAdmin();
           $('#username').val(data.username);
           $('#firstname').val(data.firstname);
           $('#lastname').val(data.lastname);
+          $('#mobile_number').val(data.mobile_number);
           $('#mi').val(data.mi);
           $('#birthday').val(data.birthday);
           $('#gender').val(data.gender);
@@ -247,6 +250,7 @@ checkIfLoggedInAdmin();
       birthday = $("#birthday").val()
       gender = $("#gender").val()
       password= $("#password").val()
+      mobile_number= $("#mobile_number").val()
       $.ajax({
         url:'../required/api.php',
         data:{
@@ -257,7 +261,8 @@ checkIfLoggedInAdmin();
           mi:mi,
           birthday:birthday,
           gender:gender,
-          password:password
+          password:password,
+          mobile_number:mobile_number,
         },
         dataType:'JSON',
         type:'POST',
