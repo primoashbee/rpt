@@ -36,55 +36,41 @@ checkIfLoggedInAdmin();
       <section id="main-content">
           <section class="wrapper">
           <div style="margin-top:15px"></div>
-          <form action="create_account1.php" method="POST" id="frmCreateAccount">
+          <form action="update_account1.php" method="POST" id="frmCreateAccount" enctype="multipart/form-data">
             <div class="panel panel-default">
                 <div class="panel-heading"><h3>Create Accounts</h3></div>
                 <div class="panel-body">
                   <?php 
                       require "../required/alert.php";
                   ?>
-                    <h3> Personal Information </h3>
+                    <h3> Account Information </h3>  
+                    <div class="col-xs-12 col-md-6 col-lg-6">
+                      <center><img src="<?=$_SESSION['user']['img_url']."?".rand(0,100)?>" class="img-responsive img-circle" id="output" style="max-width:250px;max-height: 250px" width="250px" height="250px">
 
+                      <br>
+                      <input type="file" accept="image/*" id="img_src" name="img_src" onchange="loadFile(event)" style="visibility: hidden">
+                      <button type="button" id="btnUpload" class="btn btn-sm btn-warning">Change Profile Photo</button>
+                      <script>
+                      var loadFile = function(event) {
+                        var output = document.getElementById('output');
+                        output.src = URL.createObjectURL(event.target.files[0]);
+                      };
+                    </script>
+                    </div>
                     <div class="col-xs-12 col-md-6 col-lg-6 form-group" id="divUsername">
                       <label class="labeling" for="username" id="lblUsername">Username</label>
-                      <input class="form-control" type="text" id="username" name="username" required="">
+                      <input class="form-control" type="text" id="username" name="username"  readonly value="<?=$_SESSION['user']['username']?>"required="">
                     </div>
-                    <div class="col-xs-12 col-md-6 col-lg-6 form-group">
-                      <label class="labeling" for="firstname">Firstname</label>
-                      <input class="form-control" type="text" id="firstname" name="firstname"  required="">
-                    </div>                
-                    <div class="col-xs-12 col-md-6 col-lg-6 form-group">
-                      <label class="labeling" for="lastname">Lastname</label>
-                      <input class="form-control" type="text" id="lastname" name="lastname"  required="">
-                    </div>                
-                    <div class="col-xs-12 col-md-1 col-lg-2 form-group">
-                      <label class="labeling" for="mi">Middle Initial</label>
-                      <input class="form-control" type="text" id="mi" name="mi" >
-                    </div>                  
-                    <div class="col-xs-12 col-md-4 col-lg-2 form-group">
-                      <label class="labeling" for="birthday">Birthday</label>
-                      <input class="form-control" type="date" id="birthday" name="birthday"  required="">
-                    </div>                                  
-                    <div class="col-xs-12 col-md-4 col-lg-2 form-group">
-                      <label class="labeling" for="gender">Gender</label>
-                      <select class="form-control" name="gender" id="gender"  required="">
-                        <option value="">Please Select</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                      </select>
-                    </div>                
-                    <div class="clearfix"></div>
-                    <hr>
-                    <h3> Account Information </h3>  
-                    <div class="col-xs-12 col-md-4 col-lg-4 form-group divPassword">
+                  
+                    <div class="col-xs-12 col-md-4 col-lg-6 form-group divPassword">
                       <label class="labeling" for="password" id="lblPassword">Password</label>
-                      <input class="form-control" type="password" id="password" name="password"  required="">
+                      <input class="form-control" type="password" id="password" name="password"  >
                     </div>
-                    <div class="col-xs-12 col-md-4 col-lg-4 form-group divPassword">
+                    <div class="col-xs-12 col-md-4 col-lg-6 form-group divPassword">
                       <label class="labeling" for="password_confirm">Confirm Password</label>
-                      <input class="form-control" type="password" id="password_confirm" name="password_confirm"  required="">
+                      <input class="form-control" type="password" id="password_confirm" name="password_confirm">
                     </div>
-                    <div class="col-xs-12 col-lg-4 col-md-4" style="margin-top:15px">
+                    <div class="col-xs-12 col-lg-4 col-md-6" style="margin-top:15px">
                       <input type="submit"  class="btn btn-lg btn-success">
                     </div>
 
@@ -96,19 +82,9 @@ checkIfLoggedInAdmin();
           
           </section>
       </section>
-
       <!--main content end-->
       <!--footer start-->
-      <footer class="site-footer" style="  background: #ffab62;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;">
-          <div class="text-center">
-              <?= $footer_text ?>
-              
-          </div>
-      </footer>
+      <?php require "../required/footer.php" ?>
       <!--footer end-->
   </section>
 
@@ -122,7 +98,7 @@ checkIfLoggedInAdmin();
       
       $.ajax({
           url:'../required/api.php',
-          data:{request:'checkIfUsernameExists',username:$('#username').val()},
+          data:{request:'updateAccountViaID',id:'<?=$_SESSION['user']['id']?>'},
           type:'POST',
           success:function(data){
             console.log(data)
@@ -162,7 +138,12 @@ checkIfLoggedInAdmin();
         return true;
       }
         return false;
+
     }
+
+    $("#btnUpload").click(function(){
+      $('#img_src').click();
+    })
   </script>
 
 	

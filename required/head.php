@@ -10,6 +10,8 @@
     <!-- Custom styles for this template -->
     <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../assets/css/style-responsive.css" rel="stylesheet">
+    <link href="../assets/css/table-responsive.css" rel="stylesheet">
+
     <link href="../assets/css/datatables.css" rel="stylesheet">
 
     <script src="../assets/js/chart-master/Chart.js"></script>

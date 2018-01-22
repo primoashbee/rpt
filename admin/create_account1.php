@@ -3,6 +3,7 @@
 	require "../config.php";
 	require "../required/functions.php";
 	session_start();
+	checkIfLoggedInAdmin();
 	$username = $_POST['username'];
 	$password = $_POST['password'];
 	$fname = $_POST['firstname'];

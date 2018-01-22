@@ -1,6 +1,8 @@
 <?php 
 require "../config.php";
 require "../required/functions.php";
+session_start();
+checkIfLoggedInAdmin();
 ?>
 
 <!DOCTYPE html>
