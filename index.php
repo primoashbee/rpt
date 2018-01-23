@@ -1,6 +1,7 @@
 <?php 
 require "config.php";
 require "required/functions.php";
+header('location:login.php');
 ?>
 
 <!DOCTYPE html>

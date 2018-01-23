@@ -3,7 +3,8 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-              	  <p class="centered"><a href="index.php"><img src="<?=$_SESSION['user']['img_url']."?".rand(0,00)?>" class="img-circle" width="50%"></a></p>
+              	  <p class="centered"><a href="index.php">
+                    <img src="<?=$_SESSION['user']['img_url']."?".rand(0,00)?>" class="img img-circle" width="100px" height="100px" style="max-width:250px;max-height: 250px"></a></p>
               	  <h5 class="centered"><?= getLoggedInName() ?></h5>
               	  
                   <li class="mt" style="margin-top:-10px">

@@ -5,17 +5,18 @@ session_start();
 	$id = $_SESSION['user']['id'];
 	if(!file_exists($_FILES['img_src']['tmp_name']) || !is_uploaded_file($_FILES['img_src']['tmp_name'])) {
 		if($password ==""){
-
-			header('location:update_account.php');
+				echo 'no PASSWORD';
+				
+				header('location:update_account.php');
+				
 		}else{
-		$sql ="Update accounts set 
-		password ='$password' where id ='$id'";
+		$sql ="Update accounts set password ='$password' where id ='$id'";
 		if($res = mysqli_query($conn,$sql)){
 				$_SESSION['msg'] = 'Account Succesffuly Updated';
-				
 				$sql = "Select * from accounts where id ='$id'";
 				$res = mysqli_query($conn,$sql);
 				$_SESSION['user'] = mysqli_fetch_assoc($res);
+
 				header('location:update_account.php');
 			}
 		}

@@ -10,7 +10,12 @@ function activeTabs($needle,$haystack){
 	}
 }
 function getLoggedInName(){
-	return 'ADMINISTRATOR';
+
+	if($_SESSION['user']['isAdmin']){
+		return 'ADMINISTRATOR';
+	}else{
+		return $_SESSION['user']['firstname']." ".$_SESSION['user']['lastname'];
+	}
 }
 
 function checkIfUsernameExists($username){
@@ -33,6 +38,12 @@ function getProperties(){
 	require "../config.php";
 	$space = " ";
 	$sql ="SELECT p.*, b.`name` as baranggay_name, c.`type` as class_type,CONCAT(a.`firstname`,'$space' ,a.`lastname`) AS owner_name FROM properties p LEFT JOIN baranggays b ON p.`baranggay_id` = b.`id` LEFT JOIN class c ON p.`class_id` =c.`id` LEFT JOIN accounts a ON p.`owner_id` = a.`id` WHERE p.isDeleted = 0";
+	return mysqli_fetch_all(mysqli_query($conn,$sql),MYSQLI_ASSOC);
+}
+function getMyProperties($id){
+	require "../config.php";
+	$space = " ";
+	$sql ="SELECT p.*, b.`name` as baranggay_name, c.`type` as class_type,CONCAT(a.`firstname`,'$space' ,a.`lastname`) AS owner_name FROM properties p LEFT JOIN baranggays b ON p.`baranggay_id` = b.`id` LEFT JOIN class c ON p.`class_id` =c.`id` LEFT JOIN accounts a ON p.`owner_id` = a.`id` WHERE p.isDeleted = 0 and p.owner_id = '$id'";
 	return mysqli_fetch_all(mysqli_query($conn,$sql),MYSQLI_ASSOC);
 }
 function getBaranggayCollection(){
