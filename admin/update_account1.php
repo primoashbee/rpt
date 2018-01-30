@@ -1,12 +1,12 @@
 <?php
-require '../config.php';
+//require '../config.php';
 session_start();
 	$password = $_POST['password'];
 	$id = $_SESSION['user']['id'];
 	if(!file_exists($_FILES['img_src']['tmp_name']) || !is_uploaded_file($_FILES['img_src']['tmp_name'])) {
 		if($password ==""){
-
 			header('location:update_account.php');
+			return;
 		}else{
 		$sql ="Update accounts set 
 		password ='$password' where id ='$id'";
@@ -17,6 +17,7 @@ session_start();
 				$res = mysqli_query($conn,$sql);
 				$_SESSION['user'] = mysqli_fetch_assoc($res);
 				header('location:update_account.php');
+				return;
 			}
 		}
 		
@@ -48,6 +49,7 @@ session_start();
 				$_SESSION['user'] = mysqli_fetch_assoc(mysqli_query($conn,$sql));
 
 				header('location:update_account.php');
+				return;
 			}
 	    } else {
 	    	echo 'File not an Image';

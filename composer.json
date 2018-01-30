@@ -1,0 +1,8 @@
+{
+    "require": {
+        "paymaya/paymaya-sdk": "*",
+        "stripe/stripe-php": "^5.9",
+        "phpoffice/phpspreadsheet": "^1.1",
+        "dompdf/dompdf": "^0.8.2"
+    }
+}

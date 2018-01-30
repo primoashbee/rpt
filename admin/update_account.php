@@ -96,24 +96,7 @@ checkIfLoggedInAdmin();
       $("#frmCreateAccount").submit(function(e){
       var errors = 0
       
-      $.ajax({
-          url:'../required/api.php',
-          data:{request:'updateAccountViaID',id:'<?=$_SESSION['user']['id']?>'},
-          type:'POST',
-          success:function(data){
-            console.log(data)
-            if(data==200){
-              console.log('existing')
-              $("#divUsername").addClass('has-error')
-              $("#lblUsername").html('Username (Username already existing)')
-              errors++
-            }else{
-              console.log('pwede')
-              $("#divUsername").removeClass('has-error')
-              $("#lblUsername").html('Username')}
-            
-          }
-        })
+      
       
       if(!checkPasswordIfMatched($("#password").val(),$('#password_confirm').val())){
         $('#lblPassword').html('Password (Password must match)');
@@ -127,7 +110,6 @@ checkIfLoggedInAdmin();
       if(errors>0){
         e.preventDefault()
       }
-      $('#password_confirm').attr('disabled','disabled');
       $('#password_confirm').attr('disabled','disabled');
 
     })

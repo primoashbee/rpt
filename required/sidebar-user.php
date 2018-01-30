@@ -24,7 +24,7 @@
                       <ul class="sub">
                           <li><a  href="my_payments.php">VIEW PAYMENTS</a></li>
                           <li><a  href="bills_payments.php">BILLS PAYMENT</a></li>
-                          <li><a  href="my_payment_receipts.php">RECEIPTS</a></li>
+                          <!--<li><a  href="my_payment_receipts.php">RECEIPTS</a></li>!-->
                           <!--<li><a  href="pay_properties.php">AMILYAR PAYMENT</a></li>!-->
                       </ul>
                   </li>

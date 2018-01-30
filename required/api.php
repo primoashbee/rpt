@@ -9,6 +9,27 @@ if($request=="checkIfUsernameExists"){
 	echo checkIfUsernameExists($username);
 	return checkIfUsernameExists($username);
 }
+if($request=="getComputeTaxPaymentViaId"){
+	$id = addslashes($_POST['id']);
+	$sql ="Select p.*, concat(b.name,'/',c.type)  as location_class, format(p.value,2) as p_value from properties p left join class c on p.class_id = c.id left join baranggays b on b.id = p.id where p.id ='$id'";
+	
+	$info =mysqli_fetch_assoc(mysqli_query($conn,$sql));
+	
+	$value = $info['value'];
+
+	$tax = $value*$GLOBAL_TAX_RATE;
+	$latest_billing =getLatestBillingViaID($id);
+
+
+	echo json_encode(array(
+		'property'=>$info,
+		'rate'=>$GLOBAL_TAX_RATE,
+		'tax_text'=>(number_format($tax,2)),
+		//'year'=>getTaxYearViaId($id),
+		'tax'=>intval($tax),
+		'billing'=>$latest_billing));
+
+}
 if($request=="getAccountViaID"){
 	$id = addslashes($_POST['id']);
 	$sql ="Select * from accounts where id ='$id'";
