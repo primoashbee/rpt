@@ -1,4 +1,17 @@
 <?php 
+/*
+function sms_format($number){
+	$old_number = $number;
+	$length = strlen($old_number)-1;
+	$prefix=""
+	for($x=0;$x<=$length;$x++){
+		if($x==1){
+			$prefix.="6";
+		}
+	}
+	return $length;
+
+}*/
 function checkIfLoggedInAdmin(){
 	if(!isset($_SESSION['user']) && $_SESSION['user']['isAdmin']==false){
 		header('location:../login.php');
@@ -150,9 +163,45 @@ function checkIfUsernameExists($username){
 	return 404;
 
 }
-function myReceipts($user_id){
+function checkPropertyStatus($property_id){
+
+}
+function myReceipts($user_id=""){
 	require "../config.php";
-	$sql ="SELECT p.checkout_id,p.id AS payment_id,b.*,prop.`owner_id` as owner_id FROM payments p LEFT JOIN bills b ON p.billing_id = b.id  LEFT JOIN properties prop ON b.`property_id`=prop.id where owner_id ='$user_id'";
+	if($user_id==""){
+	$sql ="SELECT 
+		  p.checkout_id,
+		  p.id AS payment_id,
+		  b.*,
+		  prop.`owner_id` AS owner_id,
+		  CONCAT(acc.`firstname`,' ',acc.`lastname`) AS payer_name
+		FROM
+		  payments p 
+		  LEFT JOIN bills b 
+		    ON p.billing_id = b.id 
+		  LEFT JOIN properties prop 
+		    ON b.`property_id` = prop.id 
+		   LEFT JOIN accounts acc ON prop.`owner_id` = acc.`id`
+		ORDER BY p.created_at DESC ";
+	
+	}else{
+	$sql ="SELECT 
+			  p.checkout_id,
+			  p.id AS payment_id,
+			  b.*,
+			  prop.`owner_id` AS owner_id,
+			  CONCAT(acc.`firstname`,' ',acc.`lastname`) AS payer_name
+			FROM
+			  payments p 
+			  LEFT JOIN bills b 
+			    ON p.billing_id = b.id 
+			  LEFT JOIN properties prop 
+			    ON b.`property_id` = prop.id 
+			   LEFT JOIN accounts acc ON prop.`owner_id` = acc.`id`
+ 
+			where owner_id ='$user_id' order by p.created_at DESC";
+	}		
+
 	return mysqli_fetch_all(mysqli_query($conn,$sql),MYSQLI_ASSOC);
 }
 function getReceiptViaPaymentID($payment_id){
@@ -195,6 +244,46 @@ function getReceiptViaPaymentID($payment_id){
 
 
 }
+function getReceiptViaBillingId($billing_id){
+	require "../config.php";
+	$sql = "SELECT 
+		p.`id` AS payment_id,
+		p.`checkout_id`,
+		b.`property_id`,
+		b.`amount`,
+		b.id AS billing_id,
+		b.`billing_year`,
+		b.`billing_month`,
+		p.`created_at`,
+		prop.id AS property_id,
+		prop.`lot_number`,
+		prop.`owner_id`,
+		prop.`lot_number`,
+		prop.`pin_td`,
+		prop.`value`,
+		a.`firstname`,
+		a.`lastname`,
+		a.`mobile_number`,
+		br.`name`,
+		c.`type`
+		FROM
+		payments p 
+		LEFT JOIN bills b 
+		ON b.`id` = p.`billing_id` 
+		LEFT JOIN properties prop 
+		ON prop.`id` = b.`property_id` 
+		LEFT JOIN accounts a 
+		ON a.`id` = prop.`owner_id` 
+		LEFT JOIN class c 
+		ON prop.`class_id` = c.id
+		LEFT JOIN baranggays br
+		ON prop.`baranggay_id` = br.`id`
+		where p.`billing_id` = '$billing_id'";
+
+		return mysqli_fetch_array(mysqli_query($conn,$sql),MYSQLI_ASSOC);
+
+
+}
 function getAccountsList(){
 	require "../config.php";
 	$sql ="Select * from accounts where isAdmin = 0 and isDeleted = 0";
@@ -205,6 +294,13 @@ function getProperties(){
 	$space = " ";
 	$sql ="SELECT p.*, b.`name` as baranggay_name, c.`type` as class_type,CONCAT(a.`firstname`,'$space' ,a.`lastname`) AS owner_name FROM properties p LEFT JOIN baranggays b ON p.`baranggay_id` = b.`id` LEFT JOIN class c ON p.`class_id` =c.`id` LEFT JOIN accounts a ON p.`owner_id` = a.`id` WHERE p.isDeleted = 0";
 	return mysqli_fetch_all(mysqli_query($conn,$sql),MYSQLI_ASSOC);
+}
+function getDelinquentsProperties(){
+	require "../config.php";
+	$sql ="SELECT p.*,b.isPaid FROM properties p LEFT JOIN bills b ON b.`property_id` = p.id WHERE b.`property_id` IS NULL and b.billing_year=YEAR(CURRENT_TIMESTAMP)";
+}
+function getActiveProperties(){
+	$sql ="SELECT p.*,b.isPaid FROM properties p LEFT JOIN bills b ON b.`property_id` = p.id WHERE b.`property_id` IS NULL and b.billing_year=YEAR(CURRENT_TIMESTAMP)";
 }
 function getMyProperties($id){
 	require "../config.php";

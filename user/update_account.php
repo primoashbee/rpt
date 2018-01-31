@@ -71,7 +71,7 @@ checkIfLoggedInAdmin();
                       <input class="form-control" type="text" id="lastname" name="lastname" value="<?=$_SESSION['user']['lastname']?>"  required="">
                     </div>                
                     <div class="col-xs-12 col-md-4 col-lg-4 form-group">
-                      <label class="labeling" for="mobile_number">Mobile Number</label>
+                      <label class="labeling" for="mobile_number">Mobile Number (eg 639171234567)</label>
                       <input class="form-control" type="text" id="mobile_number" name="mobile_number" value="<?=$_SESSION['user']['mobile_number']?>" required="">
                     </div>                
                     <div class="col-xs-12 col-md-2 col-lg-2 form-group">

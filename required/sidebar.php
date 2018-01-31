@@ -33,7 +33,7 @@
                       <ul class="sub">
                           <li><a  href="properties.php">VIEW PROPERTIES</a></li>
                           <li><a  href="create_properties.php">CREATE PROPERTIES</a></li>
-                          <li><a  href="paid_properies.php">REAL PROPERTY TAX PAYMENTS</a></li>
+                          <li><a  href="paid_properties.php">TAX PAYMENTS</a></li>
                           <!--<li><a  href="pay_properties.php">AMILYAR PAYMENT</a></li>!-->
                       </ul>
                   </li>

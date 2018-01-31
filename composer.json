@@ -3,6 +3,8 @@
         "paymaya/paymaya-sdk": "*",
         "stripe/stripe-php": "^5.9",
         "phpoffice/phpspreadsheet": "^1.1",
-        "dompdf/dompdf": "^0.8.2"
+        "dompdf/dompdf": "^0.8.2",
+        "mpdf/mpdf": "^7.0",
+        "coreproc/chikka-api-sdk": "0.1.*"
     }
 }

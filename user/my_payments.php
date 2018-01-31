@@ -79,18 +79,19 @@ if(isset($_SESSION['checkout']) && isset($_GET['b_id'])){
                         <td data-title="Billing Year"><?=$value['billing_year']?></td>
                         <td data-title="Baranggay"><?=$value['created_at']?></td>
                         <td data-title="Amount Paid">₱ <?=number_format($value['amount'],2)?></td>
-                        <td data-title="Action">
-                          <button class="btn btn-sm btn-default view" 
-                          checkout_id ="<?=$value['checkout_id']?>"
-                          amount ="₱ <?=number_format($value['amount'])?>"
-                          payment_date ="<?=($value['created_at'])?>"
+                       <td data-title="Action">
+                                <button class="btn btn-sm btn-default view" 
+                                checkout_id ="<?=$value['checkout_id']?>"
+                                amount ="₱ <?=number_format($value['amount'])?>"
+                                payment_date ="<?=($value['created_at'])?>"
+                                payer_name="<?=$value['payer_name']?>"
 
 
 
-                          ><i class="fa fa-eye"></i></button>
-                          <a href="receipt.php?id=<?=$value['payment_id']?>"><button class="btn btn-sm btn-success"><i class="fa fa-download"></i></button></a>
-                        </td>
-                        
+                                ><i class="fa fa-eye" style="font-size:2em"></i></button>
+                                <a href="receipt.php?id=<?=$value['payment_id']?>&type=excel" ><button class="btn btn-sm btn-success"><i class="fa fa-file-excel-o" aria-hidden="true" style="font-size:2em"></i></button></a>
+                                <a href="receipt.php?id=<?=$value['payment_id']?>&type=pdf" ><button class="btn btn-sm btn-warning"><i class="fa fa-file-pdf-o fa-2" aria-hidden="true" style="font-size:2em"></i></button></a>
+                              
 
                         </td>
                       </tr>

@@ -4,13 +4,13 @@
 	require "../required/functions.php";
 	session_start();
 	checkIfLoggedInAdmin();
-	$username = $_POST['username'];
-	$password = $_POST['password'];
-	$fname = $_POST['firstname'];
-	$lname = $_POST['lastname'];
-	$bday = $_POST['birthday'];
-	$gender = $_POST['gender'];
-	$mi = $_POST['mi'];
+	$username = addslashes($_POST['username']);
+	$password = addslashes($_POST['password']);
+	$fname = addslashes($_POST['firstname']);
+	$lname = addslashes($_POST['lastname']);
+	$bday = addslashes($_POST['birthday']);
+	$gender = addslashes($_POST['gender']);
+	$mi = addslashes($_POST['mi']);
 	/*
 	$sql = "Insert into accounts(username,`password`,firstname,lastname,mi,birthday,gender)values('".$username."','".$password."','".$fname."','".$lname."','".$bday."','".$gender."')";
 		if($flag = mysqli_query($conn,$sql)){

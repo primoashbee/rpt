@@ -1,9 +1,13 @@
 <?php 
-require __DIR__  . '../../vendor/autoload.php';
 
+require __DIR__  . '../../vendor/autoload.php';
 require "../config.php";
 require "../required/functions.php";
 
+
+use Coreproc\Chikka\ChikkaClient;
+use Coreproc\Chikka\Models\Sms;
+use Coreproc\Chikka\Transporters\SmsTransporter;
 
 
 session_start();
@@ -14,10 +18,30 @@ if(isset($_SESSION['checkout']) && isset($_GET['b_id'])){
   $checkoutID = $_SESSION['checkout']->id;
   $_SESSION['msg'] = 'Checkout successfully with ID: '.$_SESSION['checkout']->id;
   checkoutPayment($billing_id,$checkoutID);
-  unset($_SESSION['checkout']);
-  unset($_GET['b_id']);
+  $receipt = getReceiptViaBillingId($_GET['b_id']);
+  $msg = "Your payment (P ".number_format($receipt['amount'],2).") for Real Property Tax for :".$receipt['pin_td']." has been posted";
+  
+$clientId = '07a28c3017c007c0e318b6a1b4e0abff44dd23b1b88a5d360b75a268ac30374e';
+$secretKey = 'b73fd9702ab4d553d71585b1c7ce9eb149e1a42964ced1bbaa1bba13d911607f';
+$shortCode = '29290951011';
+
+
+
+
+$chikkaClient = new ChikkaClient($clientId, $secretKey, $shortCode);
+
+$sms = new Sms(rand(0,100000), $receipt['mobile_number'], $msg);
+
+$smsTransporter = new SmsTransporter($chikkaClient, $sms);
+
+$response = $smsTransporter->send();
+if($response->status==200){
+
 }
 
+unset($_SESSION['checkout']);
+unset($_GET['b_id']);
+}
 ?>
 
 <!DOCTYPE html>
