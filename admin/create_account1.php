@@ -5,7 +5,7 @@
 	session_start();
 	checkIfLoggedInAdmin();
 	$username = addslashes($_POST['username']);
-	$password = addslashes($_POST['password']);
+	$password = password_hash(addslashes($_POST['password']),PASSWORD_DEFAULT);
 	$fname = addslashes($_POST['firstname']);
 	$lname = addslashes($_POST['lastname']);
 	$bday = addslashes($_POST['birthday']);

@@ -3,7 +3,7 @@ require "../config.php";
 require "../required/functions.php";
 session_start();
 if(isset($_GET['type'])){
-$type = $_GET'type'];
+$type = $_GET['type'];
 	if($type="CMS"){
 	$id = addslashes($_POST['cms_id']);
 	$vision = addslashes($_POST['vision']);
@@ -20,7 +20,7 @@ $type = $_GET'type'];
 		}
 	}elseif($type="SLIDES"){
 
-		
+
 
 	}
 

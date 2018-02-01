@@ -75,7 +75,7 @@ if($request=="updateAccountViaID"){
 	$mi = addslashes($_POST['mi']);
 	$birthday = addslashes($_POST['birthday']);
 	$gender= addslashes($_POST['gender']);
-	$password = addslashes($_POST['password']);
+	$password = password_hash(addslashes($_POST['password']),PASSWORD_DEFAULT);
 	$id = addslashes($_POST['id']);
 	$mobile_number = addslashes($_POST['mobile_number']);
 	$sql = "Update accounts set 

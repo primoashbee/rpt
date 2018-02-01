@@ -2,7 +2,7 @@
 require '../config.php';
 require '../required/functions.php';
 
-
+$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 session_start();
 /*
  * Sample checkout.php code for PayMaya Checkout
@@ -109,9 +109,9 @@ $billing_id = $_POST['billing_id'];
         
         
        $itemCheckout->redirectUrl = array(
-            "success" => "http://rpt.lara/user/bills_payments.php?b_id=".$billing_id,
-            "failure" => "http://rpt.lara/user/error.php",
-            "cancel" => "http://rpt.lara/user/cancel.php"
+            "success" => $actual_link.'?b_id='.$billing_id,
+            "failure" => $_SERVER['HTTP_HOST'].'/user/error.php',
+            "cancel" =>  $_SERVER['HTTP_HOST'].'/user/cancel.php'
         );
        
        $itemCheckout->execute();

@@ -232,7 +232,6 @@ unset($_GET['b_id']);
                         <select class="form-control" name="payment_method" id="payment_method">
                             <option value="">Please Select</option>
                             <option value="paymaya">PayMaya</option>
-                            <option value="stripe">Stripe</option>
                         </select>
                     </div>
 
