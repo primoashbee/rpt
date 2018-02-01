@@ -1,8 +1,10 @@
 <?php
 require '../config.php';
 session_start();
-	$password = $_POST['password'];
-	$id = $_SESSION['user']['id'];
+
+	$password = password_hash($_POST['password'],PASSWORD_DEFAULT);
+	$id  =$_SESSION['user']['id'];
+	
 	if(!file_exists($_FILES['img_src']['tmp_name']) || !is_uploaded_file($_FILES['img_src']['tmp_name'])) {
 		if($password ==""){
 				echo 'no PASSWORD';
@@ -17,6 +19,7 @@ session_start();
 				$res = mysqli_query($conn,$sql);
 				$_SESSION['user'] = mysqli_fetch_assoc($res);
 
+	
 				header('location:update_account.php');
 			}
 		}

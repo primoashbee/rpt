@@ -18,8 +18,8 @@ class Checkout
 	public $transactionReferenceNumber;
 	public $receiptNumber;
 	public $paymentStatus;
-	//public $voidStatus;
-	//public $metadata;
+	public $voidStatus;
+	public $metadata;
 
 	private $apiManager;
 
@@ -46,12 +46,12 @@ class Checkout
 		$responseArr = json_decode($response, true);
 
 		$this->status = $responseArr["status"];
-		//$this->paymentType = $responseArr["paymentType"];
+		$this->paymentType = $responseArr["paymentType"];
 		$this->transactionReferenceNumber = $responseArr["transactionReferenceNumber"];
 		$this->receiptNumber = $responseArr["receiptNumber"];
 		$this->paymentStatus = $responseArr["paymentStatus"];
-		//$this->voidStatus = $responseArr["voidStatus"];
-		//$this->metadata = $responseArr["metadata"];
+		$this->voidStatus = $responseArr["voidStatus"];
+		$this->metadata = $responseArr["metadata"];
 
 		return $response;
 	}

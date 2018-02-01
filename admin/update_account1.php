@@ -1,7 +1,7 @@
 <?php
-//require '../config.php';
+require '../config.php';
 session_start();
-	$password = $_POST['password'];
+	$password = password_hash($_POST['password'],PASSWORD_DEFAULT);
 	$id = $_SESSION['user']['id'];
 	if(!file_exists($_FILES['img_src']['tmp_name']) || !is_uploaded_file($_FILES['img_src']['tmp_name'])) {
 		if($password ==""){

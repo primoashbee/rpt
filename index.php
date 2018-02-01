@@ -2,10 +2,7 @@
 require "config.php";
 require "required/functions.php";
 session_start();
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of bd549ec... changes made, server errors
 $homepage = getHomepage();
 ?>
 

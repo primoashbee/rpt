@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . "/User.php";
+require "../vendor/autoload.php";
 
 use PayMaya\PayMayaSDK;
 use PayMaya\API\Checkout;
@@ -8,9 +8,9 @@ use PayMaya\Model\Checkout\Item;
 use PayMaya\Model\Checkout\ItemAmount;
 use PayMaya\Model\Checkout\ItemAmountDetails;
 
-PayMayaSDK::getInstance()->initCheckout("pk-iaioBC2pbY6d3BVRSebsJxghSHeJDW4n6navI7tYdrN", 
-										"sk-uh4ZFfx9i0rZpKN6CxJ826nVgJ4saGGVAH9Hk7WrY6Q", 
-										"SANDBOX");
+PayMayaSDK::getInstance()->initCheckout('pk-Lks2bOCVTPho0GMq69xpucndRw0iNGjvNMNmLlY7IKL','sk-C1UqJMXtAhJ4vIlgplX2bz6WZOti6pjSG5YTVIm84Tw', 'SANDBOX');
+// Checkout
+$itemCheckout = new Checkout();
 
 // Item
 $itemAmountDetails = new ItemAmountDetails();
@@ -29,10 +29,6 @@ $item->quantity = "1";
 $item->amount = $itemAmount;
 $item->totalAmount = $itemAmount;
 
-// Checkout
-$itemCheckout = new Checkout();
-$user = new User();
-$itemCheckout->buyer = $user->buyerInfo();
 $itemCheckout->items = array($item);
 $itemCheckout->totalAmount = $itemAmount;
 $itemCheckout->requestReferenceNumber = "123456789";
@@ -41,8 +37,8 @@ $itemCheckout->redirectUrl = array(
 	"failure" => "https://shop.com/failure",
 	"cancel" => "https://shop.com/cancel"
 	);
-$itemCheckout->execute();
-$itemCheckout->retrieve();
 
-echo "Checkout ID: " . $itemCheckout->id . "\n";
-echo "Checkout URL: " . $itemCheckout->url . "\n";
+$itemCheckout->execute();
+
+echo $itemCheckout->id ;// Checkout ID
+echo $itemCheckout->url ;// Checkout URL

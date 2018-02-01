@@ -2,10 +2,6 @@
 require '../config.php';
 require '../required/functions.php';
 
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of bd549ec... changes made, server errors
 session_start();
 /*
  * Sample checkout.php code for PayMaya Checkout
@@ -20,7 +16,7 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require  '../vendor/autoload.php';
+require '../vendor/autoload.php';
 
 use PayMaya\API\Checkout;
 use PayMaya\Model\Checkout\Buyer;
@@ -31,7 +27,7 @@ use PayMaya\Model\Checkout\Address;
 use PayMaya\Model\Checkout\Contact;
 use PayMaya\API\Customization;
 
-PayMaya\PayMayaSDK::getInstance()->initCheckout('pk-AyydW1knvyLFfmNI3Xme9Lzi2dvSFQJgtCgGEJK6mZL', 'sk-OKMK8pGN1PpG219mzO3yhxWkrkfYdr5vWYWAtFJ8vDp', 'SANDBOX');
+PayMaya\PayMayaSDK::getInstance()->initCheckout('pk-Lks2bOCVTPho0GMq69xpucndRw0iNGjvNMNmLlY7IKL', 'sk-C1UqJMXtAhJ4vIlgplX2bz6WZOti6pjSG5YTVIm84Tw', 'SANDBOX');
 
 if (isset($_POST)) {
 $billing_id = $_POST['billing_id'];
@@ -64,7 +60,7 @@ $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $contact = new Contact();
         $contact->phone = $_SESSION['user']['mobile_number'];
         $contact->email =strtolower($_SESSION['user']['firstname'].'.'.$_SESSION['user']['lastname']."@gmail.com");
-
+/*
         $buyer = new Buyer();
         //$buyer->firstName = ucfirst($_POST['firstname']);
         $buyer->firstName = 'Ashbee';
@@ -74,8 +70,8 @@ $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $buyer->contact = $contact;
         //$buyer->shippingAddress = $address;
         //$buyer->billingAddress = $address;
-
-        $itemCheckout->buyer = $buyer;
+*/
+        //$itemCheckout->buyer = $buyer;
         $itemAmountDetails = new PayMaya\Model\Checkout\ItemAmountDetails();
         $itemAmountDetails->shippingFee = "0.00";
         $itemAmountDetails->tax = "0.00";
@@ -102,7 +98,6 @@ $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         // The requestReferenceNumber is an identifier for the customer's order.
         $itemCheckout->requestReferenceNumber = "123456789";
        
-    var_dump($itemCheckout);exit;
         
         // Redirect URLs are used to direct the customer to the correct
         // page based on the transaction outcome.
@@ -111,9 +106,9 @@ $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         
         
        $itemCheckout->redirectUrl = array(
-            "success" => "http://rpt.lara/user/bills_payments.php?b_id=".$billing_id,
-            "failure" => "http://rpt.lara/user/error.php",
-            "cancel" => "http://rpt.lara/user/cancel.php"
+            "success" => 'http://'.$_SERVER['HTTP_HOST'].'/user/bills_payments.php?b_id='.$billing_id,
+            "failure" => 'http://'.$_SERVER['HTTP_HOST'].'/user/error.php',
+            "cancel" =>  'http://'.$_SERVER['HTTP_HOST'].'/user/cancel.php'
         );
        
        $itemCheckout->execute();
@@ -132,7 +127,7 @@ $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     }elseif($payment_type ="stripe") {
 
        
-exit;
+
         $stripe = array(
           "secret_key"      => "sk_test_doyM4Xht0ica9M2MKiGIIdrd",
           "publishable_key" => "pk_test_pgJq2Y99jLKJ3GTPWD7TyZ9g"
