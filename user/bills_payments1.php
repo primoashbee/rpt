@@ -2,6 +2,10 @@
 require '../config.php';
 require '../required/functions.php';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of bd549ec... changes made, server errors
 session_start();
 /*
  * Sample checkout.php code for PayMaya Checkout
@@ -107,9 +111,9 @@ $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         
         
        $itemCheckout->redirectUrl = array(
-            "success" => $actual_link.'?b_id='.$billing_id,
-            "failure" => $_SERVER['HTTP_HOST'].'/user/error.php',
-            "cancel" =>  $_SERVER['HTTP_HOST'].'/user/cancel.php'
+            "success" => "http://rpt.lara/user/bills_payments.php?b_id=".$billing_id,
+            "failure" => "http://rpt.lara/user/error.php",
+            "cancel" => "http://rpt.lara/user/cancel.php"
         );
        
        $itemCheckout->execute();

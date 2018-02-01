@@ -40,7 +40,7 @@ CREATE TABLE `accounts` (
 
 /*Data for the table `accounts` */
 
-insert  into `accounts`(`id`,`firstname`,`lastname`,`mi`,`birthday`,`username`,`password`,`created_at`,`updated_at`,`isAdmin`,`img_url`,`isDeleted`,`gender`,`mobile_number`) values (1,'Eddard','Stark','A','1990-01-25','nedd','$2y$10$H0Z9/q7I3qVFWY2NfM1AD.VH.6Mla7rT6R/ORRl1/ML0EZoHjmp8m','2018-01-20 13:53:06','2018-01-20 13:53:06',0,'../assets/img/avatar/1.png',0,'Male','639171101126'),(2,'Daenarys','Stormborn','R','1990-11-12','daenarys','$2y$10$H0Z9/q7I3qVFWY2NfM1AD.VH.6Mla7rT6R/ORRl1/ML0EZoHjmp8m','2018-01-22 11:45:20','2018-01-22 11:45:20',0,'../assets/img/avatar/2.jpg',0,'Female','639171101126'),(5,'John','Snow','B','1990-01-01','johnsnow','$2y$10$H0Z9/q7I3qVFWY2NfM1AD.VH.6Mla7rT6R/ORRl1/ML0EZoHjmp8m','2018-01-22 18:07:08','2018-01-22 18:07:08',0,'../assets/img/avatar/5.png',0,'Male','639171101126'),(7,'Administrator','Administrator','A','1990-11-26','admin','$2y$10$H0Z9/q7I3qVFWY2NfM1AD.VH.6Mla7rT6R/ORRl1/ML0EZoHjmp8m','2018-01-25 20:17:49','2018-01-25 20:17:49',1,'../assets/img/avatar/7.jpg',0,'Male','639171101126'),(8,'Ashbee','Morgado','A','1994-11-26','ashbeemorgado','$2y$10$H0Z9/q7I3qVFWY2NfM1AD.VH.6Mla7rT6R/ORRl1/ML0EZoHjmp8m','2018-01-31 15:35:31','2018-01-31 15:35:31',0,'../assets/img/avatar/default.png',0,'Male','639171101126');
+insert  into `accounts`(`id`,`firstname`,`lastname`,`mi`,`birthday`,`username`,`password`,`created_at`,`updated_at`,`isAdmin`,`img_url`,`isDeleted`,`gender`,`mobile_number`) values (1,'Eddard','Stark','A','1990-01-25','nedd','1234','2018-01-20 13:53:06','2018-01-20 13:53:06',0,'../assets/img/avatar/1.png',0,'Male','639171101126'),(2,'Daenarys','Stormborn','R','1990-11-12','daenarys','password','2018-01-22 11:45:20','2018-01-22 11:45:20',0,'../assets/img/avatar/2.jpg',0,'Female','639171101126'),(5,'John','Snow','B','1990-01-01','johnsnow','1234','2018-01-22 18:07:08','2018-01-22 18:07:08',0,'../assets/img/avatar/5.png',0,'Male','639171101126'),(7,'Administrator','Administrator','A','1990-11-26','admin','1234','2018-01-25 20:17:49','2018-01-25 20:17:49',1,'../assets/img/avatar/7.jpg',0,'Male','639171101126'),(8,'Ashbee','Morgado','A','1994-11-26','ashbeemorgado','1234','2018-01-31 15:35:31','2018-01-31 15:35:31',0,'../assets/img/avatar/default.png',0,'Male','639171101126');
 
 /*Table structure for table `baranggays` */
 
@@ -72,11 +72,11 @@ CREATE TABLE `bills` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `isPaid` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `bills` */
 
-insert  into `bills`(`id`,`property_id`,`billing_year`,`billing_month`,`amount`,`created_at`,`isPaid`) values (1,6,'2018','1','15000','2018-01-31 17:03:56',1),(2,1,'2018','2','1500','2018-02-01 23:44:59',1),(3,4,'2018','2','123.13','2018-02-01 23:48:52',0);
+insert  into `bills`(`id`,`property_id`,`billing_year`,`billing_month`,`amount`,`created_at`,`isPaid`) values (1,6,'2018','1','15000','2018-01-31 17:03:56',1);
 
 /*Table structure for table `class` */
 
@@ -144,11 +144,11 @@ CREATE TABLE `payments` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `checkout_id` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `payments` */
 
-insert  into `payments`(`id`,`billing_id`,`amount_paid`,`created_at`,`updated_at`,`checkout_id`) values (1,1,NULL,'2018-01-31 17:05:06','2018-01-31 17:05:06','0bb0ab78-1324-4820-a4cf-cac0228379d0'),(2,2,NULL,'2018-02-01 23:45:59','2018-02-01 23:45:59','6f49f3a6-6908-4f94-a39b-d0ea9bdd8959');
+insert  into `payments`(`id`,`billing_id`,`amount_paid`,`created_at`,`updated_at`,`checkout_id`) values (1,1,NULL,'2018-01-31 17:05:06','2018-01-31 17:05:06','0bb0ab78-1324-4820-a4cf-cac0228379d0');
 
 /*Table structure for table `properties` */
 

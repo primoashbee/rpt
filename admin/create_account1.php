@@ -5,10 +5,14 @@
 	session_start();
 	checkIfLoggedInAdmin();
 	$username = addslashes($_POST['username']);
+<<<<<<< HEAD
 	$pass = addslashes($_POST['password']);
 
 	$password = password_hash($pass,PASSWORD_DEFAULT);
 	$_POST['password'] = $password;
+=======
+	$password = addslashes($_POST['password']);
+>>>>>>> parent of bd549ec... changes made, server errors
 	$fname = addslashes($_POST['firstname']);
 	$lname = addslashes($_POST['lastname']);
 	$bday = addslashes($_POST['birthday']);
