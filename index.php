@@ -2,7 +2,6 @@
 require "config.php";
 require "required/functions.php";
 session_start();
-$hash = password_hash('1234',PASSWORD_DEFAULT);
 
 $homepage = getHomepage();
 ?>
