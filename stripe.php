@@ -1,7 +1,7 @@
 <?php 
 require_once('vendor/autoload.php');
 echo date('n');
-
+$_GET['amount']=1000;
 ?>
 <form action="bill.php" method="POST">
     <input type="text" name="amount" id="amount" value="<?=$_GET['amount']?>">

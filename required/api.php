@@ -2,12 +2,14 @@
 session_start();
 require "../config.php";
 require "functions.php";
+
 $request = addslashes($_POST['request']);
 
-if($request=="checkIfUsernameExists"){
-	$username = addslashes($_POST['username']);
-	echo checkIfUsernameExists($username);
-	return checkIfUsernameExists($username);
+if($request=="getSlideViaID"){
+	require "../config.php";
+	$id = addslashes($_POST['id']);
+	$sql = "Select * from cms_slides where id = '$id'";
+	echo json_encode(mysqli_fetch_assoc(mysqli_query($conn,$sql)));
 }
 if($request=="getComputeTaxPaymentViaId"){
 	$id = addslashes($_POST['id']);

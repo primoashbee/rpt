@@ -1,25 +1,29 @@
 <?php 
-/*
-function sms_format($number){
-	$old_number = $number;
-	$length = strlen($old_number)-1;
-	$prefix=""
-	for($x=0;$x<=$length;$x++){
-		if($x==1){
-			$prefix.="6";
-		}
+function getHomePage($isAdmin=false){
+	if($isAdmin){
+		require "../config.php";
+	}else{
+		require "config.php";
 	}
-	return $length;
-
-}*/
+	//fetch slides
+	$sql = "Select * from cms_slides where isDeleted = false";
+	$res_cms = mysqli_fetch_all(mysqli_query($conn,$sql),MYSQLI_ASSOC);
+	$sql = "Select * from services where isDeleted = false";
+	$res_services = mysqli_fetch_all(mysqli_query($conn,$sql),MYSQLI_ASSOC);	
+	$sql = "Select * from cms_info ";
+	$res_cms_info = mysqli_fetch_assoc(mysqli_query($conn,$sql));
+	
+	$homepage =array('slides'=>$res_cms,'services'=>$res_services,'cms_info'=>$res_cms_info);
+	return $homepage;
+}
 function checkIfLoggedInAdmin(){
 	if(!isset($_SESSION['user']) && $_SESSION['user']['isAdmin']==false){
-		header('location:../login.php');
+		header('location:../index.php');
 	}
 }
 function checkIfLoggedInUser(){;
 	if(!isset($_SESSION['user'])){
-		header('location:../login.php');
+		header('location:../index.php');
 	}
 }
 function activeTabs($needle,$haystack){

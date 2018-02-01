@@ -101,7 +101,7 @@ $billing_id = $_POST['billing_id'];
         // The requestReferenceNumber is an identifier for the customer's order.
         $itemCheckout->requestReferenceNumber = "123456789";
        
-
+        
         // Redirect URLs are used to direct the customer to the correct
         // page based on the transaction outcome.
         // Redirect URLs should not be used to set the status of an order
@@ -113,7 +113,7 @@ $billing_id = $_POST['billing_id'];
             "failure" => "http://rpt.lara/user/error.php",
             "cancel" => "http://rpt.lara/user/cancel.php"
         );
-
+       
        $itemCheckout->execute();
        // var_dump($itemCheckout);
        $itemCheckout->retrieve();

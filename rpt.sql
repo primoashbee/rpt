@@ -36,11 +36,11 @@ CREATE TABLE `accounts` (
   `gender` varchar(255) DEFAULT NULL,
   `mobile_number` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`,`firstname`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `accounts` */
 
-insert  into `accounts`(`id`,`firstname`,`lastname`,`mi`,`birthday`,`username`,`password`,`created_at`,`updated_at`,`isAdmin`,`img_url`,`isDeleted`,`gender`,`mobile_number`) values (1,'Eddard','Stark','A','1990-01-25','nedd','1234','2018-01-20 13:53:06','2018-01-20 13:53:06',0,'../assets/img/avatar/1.png',0,'Male','09194141226'),(2,'Daenarys','Stormborn','R','1990-11-12','daenarys','password','2018-01-22 11:45:20','2018-01-22 11:45:20',0,'../assets/img/avatar/2.jpg',0,'Female','09194141224'),(5,'John','Snow','B','1990-01-01','johnsnow','1234','2018-01-22 18:07:08','2018-01-22 18:07:08',0,'../assets/img/avatar/5.png',0,'Male','09171101126'),(7,'Administrator','Administrator','A','1990-11-26','admin','1234','2018-01-25 20:17:49','2018-01-25 20:17:49',1,'../assets/img/avatar/7.jpg',0,'Male','09171101126');
+insert  into `accounts`(`id`,`firstname`,`lastname`,`mi`,`birthday`,`username`,`password`,`created_at`,`updated_at`,`isAdmin`,`img_url`,`isDeleted`,`gender`,`mobile_number`) values (1,'Eddard','Stark','A','1990-01-25','nedd','1234','2018-01-20 13:53:06','2018-01-20 13:53:06',0,'../assets/img/avatar/1.png',0,'Male','639171101126'),(2,'Daenarys','Stormborn','R','1990-11-12','daenarys','password','2018-01-22 11:45:20','2018-01-22 11:45:20',0,'../assets/img/avatar/2.jpg',0,'Female','639171101126'),(5,'John','Snow','B','1990-01-01','johnsnow','1234','2018-01-22 18:07:08','2018-01-22 18:07:08',0,'../assets/img/avatar/5.png',0,'Male','639171101126'),(7,'Administrator','Administrator','A','1990-11-26','admin','1234','2018-01-25 20:17:49','2018-01-25 20:17:49',1,'../assets/img/avatar/7.jpg',0,'Male','639171101126'),(8,'Ashbee','Morgado','A','1994-11-26','ashbeemorgado','1234','2018-01-31 15:35:31','2018-01-31 15:35:31',0,'../assets/img/avatar/default.png',0,'Male','639171101126');
 
 /*Table structure for table `baranggays` */
 
@@ -72,9 +72,11 @@ CREATE TABLE `bills` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `isPaid` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `bills` */
+
+insert  into `bills`(`id`,`property_id`,`billing_year`,`billing_month`,`amount`,`created_at`,`isPaid`) values (1,6,'2018','1','15000','2018-01-31 17:03:56',1);
 
 /*Table structure for table `class` */
 
@@ -93,6 +95,43 @@ CREATE TABLE `class` (
 
 insert  into `class`(`id`,`type`,`created_at`,`updated_at`,`isDeleted`) values (1,'Commerical','2018-01-22 14:12:06','2018-01-22 14:12:06',0),(2,'Residential','2018-01-22 14:12:12','2018-01-22 14:12:12',0);
 
+/*Table structure for table `cms_info` */
+
+DROP TABLE IF EXISTS `cms_info`;
+
+CREATE TABLE `cms_info` (
+  `id` int(255) unsigned NOT NULL AUTO_INCREMENT,
+  `vision` longtext,
+  `mission` longtext,
+  `about` longtext,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `vision_img` varchar(255) DEFAULT NULL,
+  `mission_img` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `cms_info` */
+
+insert  into `cms_info`(`id`,`vision`,`mission`,`about`,`created_at`,`vision_img`,`mission_img`) values (1,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','2018-02-01 15:48:14','website/images/services01.jpg','website/images/services03.jpg');
+
+/*Table structure for table `cms_slides` */
+
+DROP TABLE IF EXISTS `cms_slides`;
+
+CREATE TABLE `cms_slides` (
+  `id` int(15) unsigned NOT NULL AUTO_INCREMENT,
+  `tagline` varchar(255) DEFAULT NULL,
+  `subtitle` varchar(255) DEFAULT NULL,
+  `img_url` varchar(255) DEFAULT NULL,
+  `isDeleted` tinyint(1) DEFAULT '0',
+  `create_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+/*Data for the table `cms_slides` */
+
+insert  into `cms_slides`(`id`,`tagline`,`subtitle`,`img_url`,`isDeleted`,`create_at`) values (1,'City Treasurer\'s Balanga','Subtitle','wallpaper.png',0,'2018-02-01 09:36:44'),(2,'Valar Dohaeris','Subtitle','website/images/slide02.jpg',0,'2018-02-01 09:37:29'),(3,'Valar Morghulis','Subtitle','website/images/slide03.jpg',0,'2018-02-01 09:37:40');
+
 /*Table structure for table `payments` */
 
 DROP TABLE IF EXISTS `payments`;
@@ -105,9 +144,11 @@ CREATE TABLE `payments` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `checkout_id` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `payments` */
+
+insert  into `payments`(`id`,`billing_id`,`amount_paid`,`created_at`,`updated_at`,`checkout_id`) values (1,1,NULL,'2018-01-31 17:05:06','2018-01-31 17:05:06','0bb0ab78-1324-4820-a4cf-cac0228379d0');
 
 /*Table structure for table `properties` */
 
@@ -127,11 +168,41 @@ CREATE TABLE `properties` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `isDeleted` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `properties` */
 
-insert  into `properties`(`id`,`lot_number`,`pin_td`,`baranggay_id`,`class_id`,`value`,`owner_id`,`lattitude`,`longitude`,`created_at`,`updated_at`,`isDeleted`) values (1,'2nd floor','123-1312312-3123131-23',20,'1','150000',2,'14.6741293','120.51129070000002','2018-01-22 14:40:15','2018-01-22 14:40:15',0),(3,'hayaan mo sila','12313',5,'1','12313',1,'14.6741293','120.51129070000002','2018-01-22 14:43:35','2018-01-22 14:43:35',1),(4,'1231','2133',20,'1','12313',2,'14.6741293','120.51129070000002','2018-01-22 14:44:03','2018-01-22 14:44:03',0),(5,'12313','123131',11,'1','100000',1,'14.673441778327808','120.54409503936768','2018-01-22 15:53:15','2018-01-22 15:53:15',0);
+insert  into `properties`(`id`,`lot_number`,`pin_td`,`baranggay_id`,`class_id`,`value`,`owner_id`,`lattitude`,`longitude`,`created_at`,`updated_at`,`isDeleted`) values (1,'2nd floor','123-1312312-3123131-23',20,'1','150000',2,'14.6741293','120.51129070000002','2018-01-22 14:40:15','2018-01-22 14:40:15',0),(3,'hayaan mo sila','12313',5,'1','12313',1,'14.6741293','120.51129070000002','2018-01-22 14:43:35','2018-01-22 14:43:35',1),(4,'1231','2133',20,'1','12313',2,'14.6741293','120.51129070000002','2018-01-22 14:44:03','2018-01-22 14:44:03',0),(5,'12313','123131',11,'1','100000',1,'14.673441778327808','120.54409503936768','2018-01-22 15:53:15','2018-01-22 15:53:15',0),(6,'1647 Balic-Balic','4242-4242-4242-4242',7,'2','1500000',8,'14.6837137','120.53726449999999','2018-01-31 15:37:53','2018-01-31 15:37:53',0);
+
+/*Table structure for table `services` */
+
+DROP TABLE IF EXISTS `services`;
+
+CREATE TABLE `services` (
+  `id` int(15) unsigned NOT NULL AUTO_INCREMENT,
+  `service_name` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `isDeleted` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+/*Data for the table `services` */
+
+insert  into `services`(`id`,`service_name`,`created_at`,`isDeleted`) values (1,'PAYMENT OF REAL PROPERTY TAXES\r\n','2018-02-01 10:45:30',0),(2,'PAYMENT OF BUSINESS TAX','2018-02-01 10:45:35',0),(3,'PAYMENT OF COMMUNITY TAX CERTIFICATE','2018-02-01 10:45:39',0),(4,'PAYMENT OF TRANSFER TAX','2018-02-01 10:45:47',0),(5,'PAYMENT OF OTHER TAXES, PERMIT, FEES, AND SERVICE CHARGES','2018-02-01 10:45:47',0),(6,'\r\nPAYMENT OF MARKET FEES AND CASH TICKETS','2018-02-01 10:45:53',0),(7,'PAYMENT OF STALL RENTALS & SECURING MARKET CLEARANCE AND CERTIFICATIONS\r\n','2018-02-01 10:46:02',0),(8,'PAYMENT ON CALIBRATION OF WEIGHING SCALE','2018-02-01 10:46:05',0),(9,'PAYMENT OF LIVESTOCK','2018-02-01 10:46:10',0);
+
+/* Function  structure for function  `checkIfPaid` */
+
+/*!50003 DROP FUNCTION IF EXISTS `checkIfPaid` */;
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` FUNCTION `checkIfPaid`(property_id int) RETURNS decimal(10,0)
+    DETERMINISTIC
+BEGIN 
+  DECLARE property_id int;
+  SET property_id = property_id * 1000;
+  RETURN property_id;
+END */$$
+DELIMITER ;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

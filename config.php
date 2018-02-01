@@ -6,5 +6,6 @@ $footer_text = "FOOTER HERE";
 $GLOBAL_TAX_RATE  = 0.01;
 $logo_url ="http://rpt.lara/assets/img/balanga.png";
 $icon_url ="http://rpt.lara/assets/img/favico.ico";
+$GLOBAL_EMAIL="cityofbalanga@gov.com.ph";
 
 ?>
