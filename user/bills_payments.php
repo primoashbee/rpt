@@ -229,7 +229,7 @@ unset($_GET['b_id']);
                     </div>  
                     <div class="form-group   col-xs-12 col-md-12 col-lg-12">
                         <label for="payment_method"> Please select payment method </label>
-                        <select class="form-control" name="payment_method" id="payment_method">
+                        <select class="form-control" name="payment_method" id="payment_method" required="">
                             <option value="">Please Select</option>
                             <option value="paymaya">PayMaya</option>
                         </select>

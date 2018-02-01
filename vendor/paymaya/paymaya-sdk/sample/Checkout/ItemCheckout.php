@@ -8,10 +8,7 @@ use PayMaya\Model\Checkout\Item;
 use PayMaya\Model\Checkout\ItemAmount;
 use PayMaya\Model\Checkout\ItemAmountDetails;
 
-PayMayaSDK::getInstance()->initCheckout("pk-iaioBC2pbY6d3BVRSebsJxghSHeJDW4n6navI7tYdrN", 
-										"sk-uh4ZFfx9i0rZpKN6CxJ826nVgJ4saGGVAH9Hk7WrY6Q", 
-										"SANDBOX");
-
+PayMaya\PayMayaSDK::getInstance()->initCheckout('pk-Lks2bOCVTPho0GMq69xpucndRw0iNGjvNMNmLlY7IKL', 'sk-C1UqJMXtAhJ4vIlgplX2bz6WZOti6pjSG5YTVIm84Tw', 'SANDBOX');
 // Item
 $itemAmountDetails = new ItemAmountDetails();
 $itemAmountDetails->shippingFee = "14.00";
@@ -31,6 +28,7 @@ $item->totalAmount = $itemAmount;
 
 // Checkout
 $itemCheckout = new Checkout();
+$itemCheckout->paymentType = 'paymaya';
 $user = new User();
 $itemCheckout->buyer = $user->buyerInfo();
 $itemCheckout->items = array($item);
@@ -43,6 +41,6 @@ $itemCheckout->redirectUrl = array(
 	);
 $itemCheckout->execute();
 $itemCheckout->retrieve();
-
+$_SESSION['checkout']=$itemCheckout;
 echo "Checkout ID: " . $itemCheckout->id . "\n";
 echo "Checkout URL: " . $itemCheckout->url . "\n";

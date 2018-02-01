@@ -2,7 +2,6 @@
 require '../config.php';
 require '../required/functions.php';
 
-$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 session_start();
 /*
  * Sample checkout.php code for PayMaya Checkout
@@ -17,8 +16,7 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require __DIR__  . '../../vendor/autoload.php';
-
+require  '../vendor/autoload.php';
 
 use PayMaya\API\Checkout;
 use PayMaya\Model\Checkout\Buyer;
@@ -29,12 +27,11 @@ use PayMaya\Model\Checkout\Address;
 use PayMaya\Model\Checkout\Contact;
 use PayMaya\API\Customization;
 
-
-// Note: Please remove "SANDBOX" if you're in production environment.
-PayMaya\PayMayaSDK::getInstance()->initCheckout('pk-sEt9FzRUWI2PCBI2axjZ7xdBHoPiVDEEWSulD78CW9c', 'sk-cJFYCGhH4stZZTS52Z3dpNbrpRyu6a9iJaBiVlcIqZ5', 'SANDBOX');
+PayMaya\PayMayaSDK::getInstance()->initCheckout('pk-AyydW1knvyLFfmNI3Xme9Lzi2dvSFQJgtCgGEJK6mZL', 'sk-OKMK8pGN1PpG219mzO3yhxWkrkfYdr5vWYWAtFJ8vDp', 'SANDBOX');
 
 if (isset($_POST)) {
 $billing_id = $_POST['billing_id'];
+$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     if ($_POST['payment_method'] == 'paymaya') {
 
         $shopCustomization = new Customization();
@@ -101,6 +98,7 @@ $billing_id = $_POST['billing_id'];
         // The requestReferenceNumber is an identifier for the customer's order.
         $itemCheckout->requestReferenceNumber = "123456789";
        
+    var_dump($itemCheckout);exit;
         
         // Redirect URLs are used to direct the customer to the correct
         // page based on the transaction outcome.
@@ -130,7 +128,7 @@ $billing_id = $_POST['billing_id'];
     }elseif($payment_type ="stripe") {
 
        
-
+exit;
         $stripe = array(
           "secret_key"      => "sk_test_doyM4Xht0ica9M2MKiGIIdrd",
           "publishable_key" => "pk_test_pgJq2Y99jLKJ3GTPWD7TyZ9g"

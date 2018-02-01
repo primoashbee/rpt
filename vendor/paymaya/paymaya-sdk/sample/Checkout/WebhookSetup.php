@@ -5,7 +5,9 @@ require __DIR__ . "/../autoload.php";
 use PayMaya\PayMayaSDK;
 use PayMaya\API\Webhook;
 
-PayMayaSDK::getInstance()->initCheckout('pk-sEt9FzRUWI2PCBI2axjZ7xdBHoPiVDEEWSulD78CW9c', 'sk-cJFYCGhH4stZZTS52Z3dpNbrpRyu6a9iJaBiVlcIqZ5', 'SANDBOX');
+PayMayaSDK::getInstance()->initCheckout("pk-iaioBC2pbY6d3BVRSebsJxghSHeJDW4n6navI7tYdrN", 
+										"sk-uh4ZFfx9i0rZpKN6CxJ826nVgJ4saGGVAH9Hk7WrY6Q", 
+										"SANDBOX");
 
 $successWebhook = new Webhook();
 $successWebhook->name = Webhook::CHECKOUT_SUCCESS;
