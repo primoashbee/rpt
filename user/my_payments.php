@@ -9,14 +9,6 @@ require "../required/functions.php";
 session_start();
 checkIfLoggedInUser();
 
-if(isset($_SESSION['checkout']) && isset($_GET['b_id'])){
-  $billing_id = $_GET['b_id'];
-  $checkoutID = $_SESSION['checkout']->id;
-  $_SESSION['msg'] = 'Checkout successfully with ID: '.$_SESSION['checkout']->id;
-  checkoutPayment($billing_id,$checkoutID);
-  unset($_SESSION['checkout']);
-  unset($_GET['b_id']);
-}
 
 ?>
 

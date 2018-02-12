@@ -78,6 +78,29 @@ function getTaxYearViaId($id){
 	return '2017';
 
 }
+function billRemainingPropeties(){
+	require "../config.php";
+	$year =date('Y');
+	$month =date('n');
+	$sql = "SELECT p.id FROM properties p WHERE p.id NOT IN (SELECT b.`property_id` FROM bills b WHERE b.`billing_year` = YEAR(CURRENT_TIMESTAMP()))";
+
+	$list = mysqli_fetch_all(mysqli_query($conn,$sql),MYSQLI_ASSOC);
+	$rows= (count($list));
+	foreach ($list as $key => $value) {
+		$id = $value['id'];
+		$prop = getPropertyViaID($id);
+		$amount = ($prop['value']*$GLOBAL_TAX_RATE);
+		$sql = "Insert into bills(property_id,billing_year,billing_month,amount)values('$id','$year','$month','$amount')";
+		mysqli_query($conn,$sql);
+	}
+}
+function getPropertyWithStatus($params = array()){
+
+	require "../config.php";
+	$sql = "SELECT p.*,b.`amount`,c.`type`,IF(b.`isPaid`=TRUE,'ACTIVE','DELINQUENT') AS `status` FROM bills b LEFT JOIN properties p ON p.`id` = b.`property_id` LEFT JOIN class c ON p.`class_id` = c.id";
+	return mysqli_fetch_all(mysqli_query($conn,$sql),MYSQLI_ASSOC);
+
+}
 function getLatestBillingViaID($id){
 	require "../config.php";
 	$year =date('Y');
@@ -159,6 +182,18 @@ function getPropertyViaID($id){
 function checkIfUsernameExists($username){
 	require "../config.php";
 	$sql="Select * from accounts where username = '$username'";
+		$res = mysqli_query($conn,$sql);
+	if(mysqli_num_rows($res)>0){
+
+		return 200;
+	}
+	return 404;
+
+}
+function checkIfPinTdExists($pin_td){
+	require "../config.php";
+	$pin_td = addslashes($pin_td);
+	$sql="Select * from properties where pin_td = '$pin_td'";
 		$res = mysqli_query($conn,$sql);
 	if(mysqli_num_rows($res)>0){
 
@@ -290,8 +325,15 @@ function getReceiptViaBillingId($billing_id){
 }
 function getAccountsList(){
 	require "../config.php";
-	$sql ="Select * from accounts where isAdmin = 0 and isDeleted = 0";
+	$sql ="Select * from accounts where isAdmin = 0 ";
 	return mysqli_fetch_all(mysqli_query($conn,$sql),MYSQLI_ASSOC);
+}
+function status($bool){
+	if($bool){
+		return 'IACTIVE';
+	}else{
+		return 'ACTIVE';
+	}
 }
 function getProperties(){
 	require "../config.php";

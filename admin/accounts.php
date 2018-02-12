@@ -48,10 +48,10 @@ checkIfLoggedInAdmin();
                     <section id="no-more-tables">
                     <table class="table table-bordered table-striped table-condensed cf" id="tblList">
                       <thead class="cf">
-                        <th >Username</th>
                         <th>Firstname</th>
                         <th>Lastname</th>
                         <th>Create On</th>
+                        <th>Status</th>
                         <th>Action</th>
                       </thead>
                       <tbody >
@@ -60,14 +60,37 @@ checkIfLoggedInAdmin();
                         foreach ($list as $key => $value) {
                           ?>
                       <tr>
-                        <td data-title="Username"><?=$value['username']?></td>
                         <td data-title="Firstname"><?=$value['firstname']?></td>
                         <td data-title="Lastname"><?=$value['lastname']?></td>
                         <td data-title="Created At"><?=$value['created_at']?></td>
+                        <td data-title="Status" style="text-align: center;width: 50px">
+                        <?php 
+                            if($value['isDeleted']){
+                              
+                          ?>
+                           <span class="label label-danger">INACTIVE</span>
+                          <?php
+                          }else{
+                          ?>
+
+                        <span class="label label-success">ACTIVE</span>
+
+                          <?php } ?>
+
                         <td data-title="Actions">
                           <button class="btn btn-sm btn-default edit" id="<?=$value['id']?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                          <button class="btn btn-sm btn-danger delete" id="<?=$value['id']?>"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                          <?php 
+                            if($value['isDeleted']){
+                              
+                          ?>
+                          <button class="btn btn-sm btn-success recover" id="<?=$value['id']?>" style="background-color:#68dff0 ;border-color:#68dff0"><i class="fa fa-undo"></i></button>
+                          <?php
+                          }else{
+                          ?>
+                          <button class="btn btn-sm btn-danger delete" id="<?=$value['id']?>"><i class="fa fa-ban"></i></button>
 
+
+                          <?php } ?>
                         </td>
                       </tr>
 
@@ -110,12 +133,12 @@ checkIfLoggedInAdmin();
                       <label class="labeling" for="firstname">Firstname</label>
                       <input class="form-control" type="text" id="firstname" name="firstname"  required="">
                     </div>                
-                    <div class="col-xs-12 col-md-6 col-lg-6 form-group">
+                    <div class="col-xs-12 col-md-4 col-lg-4 form-group">
                       <label class="labeling" for="lastname">Lastname</label>
                       <input class="form-control" type="text" id="lastname" name="lastname"  required="">
                     </div>                
-                    <div class="col-xs-12 col-md-1 col-lg-1 form-group">
-                      <label class="labeling" for="mi">M.I</label>
+                    <div class="col-xs-12 col-md-3 col-lg-3 form-group">
+                      <label class="labeling" for="mi">Middle Name</label>
                       <input class="form-control" type="text" id="mi" name="mi" >
                     </div>                  
                     <div class="col-xs-12 col-md-4 col-lg-3 form-group">
@@ -162,12 +185,31 @@ checkIfLoggedInAdmin();
           <h4 class="modal-title">Account Information</h4>
         </div>
         <div class="modal-body">
-              <h1> <center> Are you sure you want to delete this account? </center> </h1>
+              <h1> <center> Are you sure you want to disable this account? </center> </h1>
         </div>
         <div class="clearfix"></div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="button" id = "btnDelete" class="btn btn-primary">Yes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade " tabindex="-1" role="dialog" id="recoverModal" >
+    <div class="modal-dialog modal-lg " role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Account Information</h4>
+        </div>
+        <div class="modal-body">
+              <h1> <center> Are you sure you want to recover this account? </center> </h1>
+        </div>
+        <div class="clearfix"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" id = "btnRecover" class="btn btn-primary">Yes</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -180,7 +222,19 @@ checkIfLoggedInAdmin();
 	<script>
   var id 
   $(function(){
-    $("#tblList").DataTable();
+     $('#mobile_number').mask("639999999999");
+    
+
+
+    $( "#frmUpdateAccount" ).validate({
+        rules: {
+          mobile_number: {
+            required: true,
+            maxlength: 12,
+            minlength: 12
+          }
+        }
+      });
     $(".edit").click(function(){
       id = $(this).attr('id')
       $.ajax({
@@ -205,6 +259,10 @@ checkIfLoggedInAdmin();
       id = $(this).attr('id')
       $("#deleteModal").modal('show');
     });
+    $(".recover").click(function(){
+      id = $(this).attr('id')
+      $("#recoverModal").modal('show');
+    });
   });
 
     $("#btnDelete").click(function(){
@@ -213,6 +271,27 @@ checkIfLoggedInAdmin();
         url:'../required/api.php',
         data:{
           request:'deleteAccountViaID',
+          id:id
+        },
+        dataType:'JSON',
+        type:'POST',
+        success:function(data){
+          if(data.code==200){
+            alert(data.msg)
+            location.reload()
+          }else{
+            alert(data.msg)
+          }
+        }
+      })
+
+    })   
+    $("#btnRecover").click(function(){
+
+      $.ajax({
+        url:'../required/api.php',
+        data:{
+          request:'recoverAccountViaID',
           id:id
         },
         dataType:'JSON',

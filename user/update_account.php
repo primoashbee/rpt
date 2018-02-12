@@ -123,7 +123,24 @@ checkIfLoggedInAdmin();
   <script>
       $(function(){
         $('#gender').val('<?=$_SESSION['user']['gender']?>');
+
+        $('#mobile_number').mask("639999999999");
+        $('#birthday').blur(function(){
+            dob = $(this).val()
+            str_dob = getDob(dob)
+            validateBirth(str_dob)
+        })
+      
       })
+       $( "#frmCreateAccount" ).validate({
+        rules: {
+          mobile_number: {
+            required: true,
+            maxlength: 12,
+            minlength: 12
+          }
+        }
+      });
       $("#frmCreateAccount").submit(function(e){
       var errors = 0
       if(!checkPasswordIfMatched($("#password").val(),$('#password_confirm').val())){

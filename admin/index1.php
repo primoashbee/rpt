@@ -4,7 +4,7 @@ require "../required/functions.php";
 session_start();
 if(isset($_GET['type'])){
 $type = $_GET['type'];
-	if($type="CMS"){
+	if($type=="CMS"){
 	$id = addslashes($_POST['cms_id']);
 	$vision = addslashes($_POST['vision']);
 	$mission = addslashes($_POST['mission']);
@@ -18,9 +18,10 @@ $type = $_GET['type'];
 			$_SESSION['msg']=mysqli_error($conn);
 
 		}
-	}elseif($type="SLIDES"){
+	}elseif($type=="SLIDES"){
+		var_dump($_FILES);
 
-		
+		exit;
 
 	}
 

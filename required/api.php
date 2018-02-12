@@ -11,6 +11,18 @@ if($request=="getSlideViaID"){
 	$sql = "Select * from cms_slides where id = '$id'";
 	echo json_encode(mysqli_fetch_assoc(mysqli_query($conn,$sql)));
 }
+if($request=="checkIfUsernameExists"){
+	require "../config.php";
+	$username = addslashes($_POST['username']);
+
+	echo checkIfUsernameExists($username);
+}
+if($request=="checkIfPinTdExists"){
+	require "../config.php";
+	$pin_td = addslashes($_POST['pin_td']);
+
+	echo checkIfPinTdExists($pin_td);
+}
 if($request=="getComputeTaxPaymentViaId"){
 	$id = addslashes($_POST['id']);
 	$sql ="Select p.*, concat(b.name,'/',c.type)  as location_class, format(p.value,2) as p_value from properties p left join class c on p.class_id = c.id left join baranggays b on b.id = p.id where p.id ='$id'";
@@ -51,7 +63,18 @@ if($request=="deleteAccountViaID"){
 	$id = addslashes($_POST['id']);
 	$sql ="update accounts set isDeleted = true where id ='$id'";
 	if(mysqli_query($conn,$sql)){
-		echo json_encode(array('code'=>200,'msg'=>'Account Successfully Deleted!'));
+		echo json_encode(array('code'=>200,'msg'=>'Account Successfully Disabled!'));
+	}else{
+	
+		echo json_encode(array('code'=>400,'msg'=>mysqli_error($conn)));
+	}
+
+}
+if($request=="recoverAccountViaID"){
+	$id = addslashes($_POST['id']);
+	$sql ="update accounts set isDeleted = false where id ='$id'";
+	if(mysqli_query($conn,$sql)){
+		echo json_encode(array('code'=>200,'msg'=>'Account Successfully Recovered!'));
 	}else{
 	
 		echo json_encode(array('code'=>400,'msg'=>mysqli_error($conn)));

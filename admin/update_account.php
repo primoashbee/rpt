@@ -93,6 +93,8 @@ checkIfLoggedInAdmin();
 	<?php require "../required/scripts.php";?>
 
   <script>
+  
+    
       $("#frmCreateAccount").submit(function(e){
       var errors = 0
       

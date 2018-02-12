@@ -49,6 +49,7 @@ checkIfLoggedInAdmin();
                     <table class="table table-bordered table-striped table-condensed cf" id="tblList">
                       <thead class="cf">
                         <th>Owner</th>
+                        <th>PIN/TD</th>
                         <th>Lot #</th>
                         <th>Baranggay</th>
                         <th>Class</th>
@@ -62,6 +63,7 @@ checkIfLoggedInAdmin();
                           ?>
                       <tr>
                         <td data-title="Owner"><?=$value['owner_name']?></td>
+                        <td data-title="PIN/TD"><?=$value['pin_td']?></td>
                         <td data-title="Lot Number"><?=$value['lot_number']?></td>
                         <td data-title="Baranggay"><?=$value['baranggay_name']?></td>
                         <td data-title="Class"><?=$value['class_type']?></td>

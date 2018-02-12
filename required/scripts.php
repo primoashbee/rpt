@@ -16,3 +16,5 @@
     <script src="../assets/js/sparkline-chart.js"></script>    
     <script src="../assets/js/zabuto_calendar.js"></script>    
     <script src="../assets/js/datatables.js"></script>    
+    <script src="../assets/js/mask.js"></script>    
+    <script src="../assets/js/jquery-validate.js"></script>    

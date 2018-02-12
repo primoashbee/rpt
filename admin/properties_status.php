@@ -37,67 +37,70 @@ checkIfLoggedInAdmin();
           <section class="wrapper">
             <div style="margin-top:15px"></div>
             <div class="panel panel-default">
-              <div class="panel panel-heading"><h3> Change Homepage </h3></div>
+              <div class="panel-heading">Property Summary</div>
               <div class="panel-body">
-              <?php require "../required/alert.php"; ?>
-               <h3> Slides </h3>
-               
-                <table class="table table-striped">
-                  <thead>
-                    <th>Tagline</th>
-                    <th>Subtitle</th>
-                    <th>Background Image</th>
-                    <th>Action</th>
-                  </thead>
-                  <tbody>
-                    
-                    <?php 
-                    $homepage = getHomePage(true);
-                    foreach ($homepage['slides'] as $key => $value) {
-                    ?>
+                 <section id="no-more-tables">
+                    <table class="table table-bordered table-striped table-condensed cf" id="tblList">
+                      <thead class="cf">
+                        <th>PIN/TD</th>
+                        <th>Location/CLASS</th>
+                        <th>Create On</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </thead>
+                      <tbody >
+                      <?php 
+                        billRemainingPropeties();
+                        $list = getPropertyWithStatus();
+
+                        foreach ($list as $key => $value) {
+                          ?>
                       <tr>
-                        <td><?=$value['tagline']?></td>
-                        <td><?=$value['subtitle']?></td>
-                        <td><img class="img img-responsive" style="max-width: 150px;max-height: 150px" src="<?='../'.$value['img_url']?>"/></td>
-                        <td>
-                          <button class="btn btn-default update" s_id="<?=$value['id']?>"><i class="fa fa-edit" style="font-size:2em"></i></button>
-                          <button class="btn btn-danger delete"><i class="fa fa-trash-o" style="font-size:2em"></i></button>
+                        <td data-title="PIN/TD"><?=$value['pin_td']?></td>
+                        <td data-title="LOCATION/CLASS"><?=$value['lot_number']?></td>
+                        <td data-title="STATUS"><?=$value['created_at']?></td>
+                        <td data-title="ACTION" style="text-align: center;width: 50px">
+                        <?php 
+                            if($value['status']=="DELINQUENT"){
+                              
+                          ?>
+                           <span class="label label-danger">INACTIVE</span>
+                          <?php
+                          }else{
+                          ?>
+
+                        <span class="label label-success">ACTIVE</span>
+
+                          <?php } ?>
+
+                        <td data-title="Actions">
+                          <button class="btn btn-sm btn-default edit" id="<?=$value['id']?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                          <?php 
+                            if($value['isDeleted']){
+                              
+                          ?>
+                          <button class="btn btn-sm btn-success recover" id="<?=$value['id']?>" style="background-color:#68dff0 ;border-color:#68dff0"><i class="fa fa-undo"></i></button>
+                          <?php
+                          }else{
+                          ?>
+                          <button class="btn btn-sm btn-danger delete" id="<?=$value['id']?>"><i class="fa fa-ban"></i></button>
+
+
+                          <?php } ?>
                         </td>
                       </tr>
-                    <?php
-                    }
 
-                    ?>
-                  </tbody>
-                </table>
-                <hr>
-                <form action = "index1.php?type=CMS" method ="POST"">
-                <h3> Vision </h3>
-                <input type="hidden" name = "cms_id" value="<?=$homepage['cms_info']['id']?>">
-                <div class="form-group">
-                <textarea class ="form-control" name="vision" id="vision" v_id=<?=$homepage['cms_info']['id']?>"" cols="30" rows="5" required=""><?=$homepage['cms_info']['vision']?></textarea>
-
-                </div>        
-                <div class="clearfix"></div>        
-                <hr>
-                <h3> Mission </h3>
-                <div class="form-group">
-                <textarea class ="form-control" name="mission" id="vision" cols="30" rows="5" required=""><?=$homepage['cms_info']['mission']?></textarea>
-
-                </div>
-
-                <div class="clearfix"></div>
-                <hr>
-                <h3> About </h3>
-                <div class="form-group">
-                <textarea class ="form-control" name="about" id="vision" cols="30" rows="5" required=""><?=$homepage['cms_info']['about']?></textarea>
-
-                <button class="btn btn-success" type="submit" style="float:right;margin-top:5px">Update </button>
-              </form>
-                </div>
+                          <?php
+                        }
+                      ?>
+                      </tbody>
+                    </table>
+                    </section>
+                  
               </div>
+
             </div>
-            
+              
           </section>
       </section>
 
@@ -153,39 +156,16 @@ checkIfLoggedInAdmin();
 
     <!-- js placed at the end of the document so the pages load faster -->
     
-	<?php require "../required/scripts.php";?>
+  <?php require "../required/scripts.php";?>
 
   <script>
-
-    $(function(){
-      $('.update').click(function(){
-        id = $(this).attr('s_id');
-        $.ajax({
-          url:'../required/api.php',
-          data:{id:id,request:'getSlideViaID'},
-          dataType:'JSON',
-          type:'POST',
-          success:function(data){
-              $('#tagline').val(data.tagline);
-              $('#subtitle').val(data.subtitle);
-
-              $('#img_url_src').attr('src','../'+data.img_url);
-
-          }
-        })
-        $('#myModal').modal('show');
+      $(function(){
+        $("#tblList").DataTable();
       })
-    })
-    $("#img_url").change(function(){
-
-            var output = document.getElementById('output');
-            console.log($(this).val())
-            output.src = $(this).val();
-    })
   </script>
 
-	
-	
+  
+  
   
 
   </body>
