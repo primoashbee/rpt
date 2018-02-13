@@ -13,8 +13,48 @@ function getHomePage($isAdmin=false){
 	$sql = "Select * from cms_info ";
 	$res_cms_info = mysqli_fetch_assoc(mysqli_query($conn,$sql));
 	
-	$homepage =array('slides'=>$res_cms,'services'=>$res_services,'cms_info'=>$res_cms_info);
+	$sql = "Select * from news order by created_at DESC";
+	$res_news = mysqli_fetch_all(mysqli_query($conn,$sql),MYSQLI_ASSOC);
+
+	$sql = "Select * from services order by created_at DESC";
+	$res_services = mysqli_fetch_all(mysqli_query($conn,$sql),MYSQLI_ASSOC);
+	
+	$homepage =array('slides'=>$res_cms,'services'=>$res_services,'cms_info'=>$res_cms_info,'news'=>$res_news,'services'=>$res_services);
 	return $homepage;
+}
+
+function generateAccountNumber(){
+	require "../config.php";
+	
+	$sql="SELECT control_number as ctrl FROM accounts  where isDeleted = false ORDER BY control_number DESC LIMIT 1";
+	$res = mysqli_query($conn,$sql);
+	if(mysqli_num_rows($res)>0){
+		$data = mysqli_fetch_assoc($res);
+		$ctrl = $data['ctrl'];
+		if(date('Y') == substr($ctrl, 0, 4)){
+			$series = substr($ctrl, 5, 14)+1;
+			return date('Y').'-'.$series;
+			
+		}else{
+			return date('Y').'-1000000';
+			
+		}
+	}else{
+			return date('Y').'-1000000';
+		
+	}
+}
+
+function generatePassword(){
+    $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    $pass = array(); //remember to declare $pass as an array
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+    for ($i = 0; $i < 8; $i++) {
+        $n = rand(0, $alphaLength);
+        $pass[] = $alphabet[$n];
+    }
+    return implode($pass); //turn the array into a string
+
 }
 function checkIfLoggedInAdmin(){
 	if(!isset($_SESSION['user']) && $_SESSION['user']['isAdmin']==false){
@@ -41,7 +81,7 @@ function getLoggedInName(){
 }
 function getTaxYearViaId($id){
 	require "../config.php";
-	return;
+	
 	$sql ="Select * from bills where property_id = '$id' and isPaid = 0 order by created_at DESC";
 	if(mysqli_num_rows($res = mysqli_query($conn,$sql))>0){
 		$isPaid = mysqli_fetch_array($res)['isPaid'];

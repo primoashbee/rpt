@@ -1,3 +1,4 @@
+
 <?php 
 require "../config.php";
 require "../required/functions.php";
@@ -74,19 +75,8 @@ checkIfLoggedInAdmin();
                           <?php } ?>
 
                         <td data-title="Actions">
-                          <button class="btn btn-sm btn-default edit" id="<?=$value['id']?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                          <?php 
-                            if($value['isDeleted']){
-                              
-                          ?>
-                          <button class="btn btn-sm btn-success recover" id="<?=$value['id']?>" style="background-color:#68dff0 ;border-color:#68dff0"><i class="fa fa-undo"></i></button>
-                          <?php
-                          }else{
-                          ?>
-                          <button class="btn btn-sm btn-danger delete" id="<?=$value['id']?>"><i class="fa fa-ban"></i></button>
-
-
-                          <?php } ?>
+                          <button class="btn btn-sm btn-default edit" id="<?=$value['id']?>"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                        
                         </td>
                       </tr>
 
@@ -161,6 +151,9 @@ checkIfLoggedInAdmin();
   <script>
       $(function(){
         $("#tblList").DataTable();
+      })
+      $('.edit').click(function(){
+        alert()
       })
   </script>
 

@@ -69,7 +69,7 @@ checkIfLoggedInAdmin();
                         <td data-title="Class"><?=$value['class_type']?></td>
                         <td data-title="Assessed Value" style="font-weight: 900"><?=number_format($value['value'])?></td>
                         <td data-title="Actions">
-                          <button class="btn btn-sm btn-default edit" id="<?=$value['id']?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                          <button class="btn btn-sm btn-default edit" id="<?=$value['id']?>"><i class="fa fa-eye" aria-hidden="true"></i></button>
                           <button class="btn btn-sm btn-danger delete" id="<?=$value['id']?>"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 
                         </td>
@@ -108,16 +108,16 @@ checkIfLoggedInAdmin();
         <div class="modal-body">
            <div class="col-xs-12 col-md-4 col-lg-4 form-group" id="divUsername">
                       <label class="labeling" for="pin_td" id="lblUsername">PIN/TD</label>
-                      <input class="form-control" type="text" id="pin_td" name="pin_td" required placeholder="PIN/TD">
+                      <input class="form-control" type="text" id="pin_td" name="pin_td" readonly="" placeholder="PIN/TD">
                     </div>
                     <div class="col-xs-12 col-md-4 col-lg-4 form-group">
                       <label class="labeling" for="lot_number">Lot #</label>
-                      <input class="form-control" type="text" id="lot_number" name="lot_number"  required="" placeholder="Lot #">
+                      <input class="form-control" type="text" id="lot_number" name="lot_number"  readonly="" placeholder="Lot #">
                     </div>            
 
                     <div class="col-xs-12 col-md-4 col-lg-4 form-group">
                       <label class="labeling" for="baranggay_id">Baranggay</label>
-                      <select class="form-control" name="baranggay_id" id="baranggay_id"  required="">
+                      <select class="form-control" name="baranggay_id" id="baranggay_id"  readonly="">
                         <option value="">Please Select</option>
             <?php 
                 $data = getBaranggayCollection();
@@ -133,7 +133,7 @@ checkIfLoggedInAdmin();
                     
                     <div class="col-xs-12 col-md-4 col-lg-4 form-group">
                       <label class="labeling" for="class_id">Class</label>
-                      <select class="form-control" name="class_id" id="class_id"  required="">
+                      <select class="form-control" name="class_id" id="class_id"  readonly="">
                         <option value="">Please Select</option>
               <?php 
                 $data = getClassList();
@@ -149,7 +149,7 @@ checkIfLoggedInAdmin();
 
                     <div class="col-xs-12 col-md-6 col-lg-6 form-group">
                       <label class="labeling" for="value">Asesssed Value</label>
-                      <input class="form-control" type="text" id="value" name="value"  required="" placeholder="Asesssed Value">
+                      <input class="form-control" type="text" id="value" name="value"  readonly="" placeholder="Asesssed Value">
                     </div>                
                     <div class="col-xs-12 col-md-6 col-lg-6 form-group">
                            <iframe src="sample.php" width="850px" height="500px" id="frameMap""></iframe>
@@ -163,7 +163,6 @@ checkIfLoggedInAdmin();
 
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

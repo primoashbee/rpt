@@ -11,6 +11,25 @@ if($request=="getSlideViaID"){
 	$sql = "Select * from cms_slides where id = '$id'";
 	echo json_encode(mysqli_fetch_assoc(mysqli_query($conn,$sql)));
 }
+if($request=="checkServiceNameIfExists"){
+	require "../config.php";
+	$service = addslashes($_POST['service']);
+	$sql = "Select * from services where service_name = '$service'";
+	if(mysqli_num_rows(mysqli_query($conn,$sql))>0){
+		echo json_encode(array('code'=>404,'msg'=>'Services already exists'));
+	}else{
+		$sql = "Insert into services(service_name)value('$service')";
+		mysqli_query($conn,$sql);
+		echo json_encode(array('code'=>200,'msg'=>'Services successfully added!'));
+		
+	}
+}
+if($request=="getNewsViaId"){
+	require "../config.php";
+	$id = addslashes($_POST['id']);
+	$sql = "Select * from news where id = '$id'";
+	echo json_encode(mysqli_fetch_assoc(mysqli_query($conn,$sql)));
+}
 if($request=="checkIfUsernameExists"){
 	require "../config.php";
 	$username = addslashes($_POST['username']);

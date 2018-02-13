@@ -78,7 +78,7 @@ checkIfLoggedInAdmin();
                           <?php } ?>
 
                         <td data-title="Actions">
-                          <button class="btn btn-sm btn-default edit" id="<?=$value['id']?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                          <button class="btn btn-sm btn-default edit" id="<?=$value['id']?>"><i class="fa fa-eye" aria-hidden="true"></i></button>
                           <?php 
                             if($value['isDeleted']){
                               
@@ -131,46 +131,37 @@ checkIfLoggedInAdmin();
                     </div>
                     <div class="col-xs-12 col-md-6 col-lg-6 form-group">
                       <label class="labeling" for="firstname">Firstname</label>
-                      <input class="form-control" type="text" id="firstname" name="firstname"  required="">
+                      <input class="form-control" type="text" id="firstname" name="firstname" readonly="">
                     </div>                
                     <div class="col-xs-12 col-md-4 col-lg-4 form-group">
                       <label class="labeling" for="lastname">Lastname</label>
-                      <input class="form-control" type="text" id="lastname" name="lastname"  required="">
+                      <input class="form-control" type="text" id="lastname" name="lastname"  readonly="">
                     </div>                
                     <div class="col-xs-12 col-md-3 col-lg-3 form-group">
                       <label class="labeling" for="mi">Middle Name</label>
-                      <input class="form-control" type="text" id="mi" name="mi" >
+                      <input class="form-control" type="text" id="mi" name="mi" readonly="">
                     </div>                  
                     <div class="col-xs-12 col-md-4 col-lg-3 form-group">
                       <label class="labeling" for="birthday">Birthday</label>
-                      <input class="form-control" type="date" id="birthday" name="birthday"  required="">
+                      <input class="form-control" type="date" id="birthday" name="birthday" readonly="">
                     </div>                                  
                     <div class="col-xs-12 col-md-4 col-lg-2 form-group">
                       <label class="labeling" for="gender">Gender</label>
-                      <select class="form-control" name="gender" id="gender"  required="">
+                      <select class="form-control" name="gender" id="gender"  readonly="">
                         <option value="">Please Select</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                       </select>
                     </div>                
                     <div class="clearfix"></div>
-                    <div class="col-xs-12 col-md-4 col-lg-4 form-group divPassword">
+                    <div class="col-xs-12 col-md-12 col-lg-12 form-group divPassword">
                       <label class="labeling" for="mobile_number" >Mobile Number</label>
-                      <input class="form-control" type="text" id="mobile_number" name="mobile_number"  required="">
-                    </div>
-                    <div class="col-xs-12 col-md-4 col-lg-4 form-group divPassword">
-                      <label class="labeling" for="password" id="lblPassword">Password</label>
-                      <input class="form-control" type="password" id="password" name="password"  required="">
-                    </div>
-                    <div class="col-xs-12 col-md-4 col-lg-4 form-group divPassword">
-                      <label class="labeling" for="password_confirm">Confirm Password</label>
-                      <input class="form-control" type="password" id="password_confirm" name="password_confirm"  required="">
+                      <input class="form-control" type="text" id="mobile_number" name="mobile_number" readonly="">
                     </div>
                   </div>
         <div class="clearfix"></div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -222,8 +213,8 @@ checkIfLoggedInAdmin();
 	<script>
   var id 
   $(function(){
-     $('#mobile_number').mask("639999999999");
-    
+    $('#mobile_number').mask("639999999999");
+    $("#tblList").DataTable();
 
 
     $( "#frmUpdateAccount" ).validate({
@@ -307,6 +298,7 @@ checkIfLoggedInAdmin();
       })
 
     })
+/*
   $("#frmUpdateAccount").submit(function(e){
     var errors = 0;
       if(!checkPasswordIfMatched($("#password").val(),$('#password_confirm').val())){
@@ -356,7 +348,7 @@ checkIfLoggedInAdmin();
       })
       e.preventDefault()  
     })
-
+*/
 
 function checkPasswordIfMatched(pass1,pass2){
       if(pass1==pass2){

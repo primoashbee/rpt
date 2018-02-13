@@ -49,7 +49,11 @@ checkIfLoggedInAdmin();
                       require "../required/alert.php";
                   ?>
                     <h3> Personal Information </h3>
-
+                    
+                    <div class="col-xs-12 col-md-4 col-lg-4 form-group" id="divUsername">
+                      <label class="labeling" for="account_number" id="lblAccountNumber">Account #:</label>
+                      <input class="form-control" type="text" id="account_number" value="<?=generateAccountNumber()?>" name="account_number" required="" readonly="">
+                    </div>
                     <div class="col-xs-12 col-md-4 col-lg-4 form-group" id="divUsername">
                       <label class="labeling" for="username" id="lblUsername">Username</label>
                       <input class="form-control" type="text" id="username" name="username" required="">
@@ -85,13 +89,13 @@ checkIfLoggedInAdmin();
                       </select>
                     </div>                
                     <div class="clearfix"></div>
-                    <hr>
-                    <h3> Account Information </h3>  
-                    <div class="col-xs-12 col-md-4 col-lg-4 form-group divPassword">
+                    
+                    <h3 class="hidden"> Account Information </h3>  
+                    <div class="col-xs-12 col-md-4 col-lg-4 form-group divPassword hidden" >
                       <label class="labeling" for="password" id="lblPassword">Password</label>
                       <input class="form-control" type="password" id="password" name="password"  required="">
                     </div>
-                    <div class="col-xs-12 col-md-4 col-lg-4 form-group divPassword">
+                    <div class="col-xs-12 col-md-4 col-lg-4 form-group divPassword hidden">
                       <label class="labeling" for="password_confirm">Confirm Password</label>
                       <input class="form-control" type="password" id="password_confirm" name="password_confirm"  required="">
                     </div>
@@ -218,15 +222,15 @@ checkIfLoggedInAdmin();
     })
 
 
-    $( "#frmCreateAccount" ).validate({
-        rules: {
-          mobile_number: {
-            required: true,
-            maxlength: 12,
-            minlength: 12
+      $( "#frmCreateAccount" ).validate({
+          rules: {
+            mobile_number: {
+              required: true,
+              maxlength: 12,
+              minlength: 12
+            }
           }
-        }
-      });
+        });
 
 
       $("#frmCreateAccount").submit(function(e){

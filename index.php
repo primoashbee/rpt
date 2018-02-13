@@ -67,6 +67,7 @@ $homepage = getHomepage();
                   <li> <a href="#services">Services</a></li>                  
                   <li> <a href="#vmg">Vision/Mission</a></li>
                   <li> <a href="#about-us">About Us</a></li>
+                  <li> <a href="#news">News</a></li>
                   <li> <a href="#contact">Contact Us</a></li>
                 </ul>
               </div>
@@ -87,7 +88,7 @@ $homepage = getHomepage();
               ?>
               <li>
                 <div class="slide-body" data-group="slide">
-                  <img src="<?=$value['img_url']?>" alt="Slide<?=$ctr?>">
+                  <img src="<?=$value['img_url']."?".rand(0,1000)?>" alt="Slide<?=$ctr?>">
                   <div class="slide_textholder" >
                     <div class="container holderinner"   >
                       <div class="caption subheader" data-animate="slideAppearDownToUp" data-delay="500" data-length="300" style=" background: rgba(54, 25, 25, .5)">
@@ -184,14 +185,45 @@ $homepage = getHomepage();
     <section id="about-us" class="block background01 animatedParent animateOnce">
       <div class="container">
         <div class="row">
-          <div class="projects">
+          <div class="container projects" style="  max-width: 100%;">
             <h2 class="animated fadeIn slow">About Us</h2>
-            <p><?=$homepage['cms_info']['about']?></p>
+              <p style="overflow:auto"><?=$homepage['cms_info']['about']?></p>
+
           </div>
         </div>
       </div>
     </section>
-    <section id="contact" class="block animatedParent animateOnce background02">
+    <section id="news" class="block animatedParent animateOnce background02">
+      <div class="mail-section">
+        <div class="quickemail animated fadeIn slow">
+          <div class="container">
+            <div class="row">
+              <div class="mail_content">
+                <h2 class="color08"> News </h2>
+                
+                <?php 
+
+                    $news = $homepage['news'];
+                    foreach ($news as $key => $value) {
+                  ?>
+                <h3 style="text-align: left;color:white;margin-top:10px"><b><?=$value['headline']?></b></h3>
+                <p class="align-left" style="color:gray;font-size: 1em"><i>Published on <?=$value['created_at']?> by Admin</i></p>
+                <p class="align-left" style="color:white"><i><?=$value['body']?></i></p>
+                <hr>
+                
+                  <?php    
+                    }
+
+                ?>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>    
+    <section id="contact" class="block animatedParent animateOnce background03">
       <div class="mail-section">
         <div class="quickemail animated fadeIn slow">
           <div class="container">

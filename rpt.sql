@@ -36,11 +36,11 @@ CREATE TABLE `accounts` (
   `gender` varchar(255) DEFAULT NULL,
   `mobile_number` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`,`firstname`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 /*Data for the table `accounts` */
 
-insert  into `accounts`(`id`,`firstname`,`lastname`,`mi`,`birthday`,`username`,`password`,`created_at`,`updated_at`,`isAdmin`,`img_url`,`isDeleted`,`gender`,`mobile_number`) values (1,'Eddard','Stark','A','1990-01-25','nedd','1234','2018-01-20 13:53:06','2018-01-20 13:53:06',0,'../assets/img/avatar/1.png',0,'Male','639171101126'),(2,'Daenarys','Stormborn','R','1990-11-12','daenarys','password','2018-01-22 11:45:20','2018-01-22 11:45:20',0,'../assets/img/avatar/2.jpg',0,'Female','639171101126'),(5,'John','Snow','B','1990-01-01','johnsnow','1234','2018-01-22 18:07:08','2018-01-22 18:07:08',0,'../assets/img/avatar/5.png',0,'Male','639171101126'),(7,'Administrator','Administrator','A','1990-11-26','admin','1234','2018-01-25 20:17:49','2018-01-25 20:17:49',1,'../assets/img/avatar/7.jpg',0,'Male','639171101126'),(8,'Ashbee','Morgado','A','1994-11-26','ashbeemorgado','1234','2018-01-31 15:35:31','2018-01-31 15:35:31',0,'../assets/img/avatar/default.png',0,'Male','639171101126');
+insert  into `accounts`(`id`,`firstname`,`lastname`,`mi`,`birthday`,`username`,`password`,`created_at`,`updated_at`,`isAdmin`,`img_url`,`isDeleted`,`gender`,`mobile_number`) values (1,'Eddard','Stark','A','1990-01-25','nedd','$2y$10$tJEuASj2hPdPrLqfj83Vi.PrSlFRf.nWJ24jRU4egzFD4z2q90G8a','2018-01-20 13:53:06','2018-01-20 13:53:06',0,'../assets/img/avatar/1.png',0,'Male','639171101126'),(2,'Daenarys','Stormborn','R','1990-11-12','daenarys','$2y$10$d92o1grFmk7wxhhBLJOgC.gnHAseGAzD76iVp/Aikj1q3ZbBMxZcW','2018-01-22 11:45:20','2018-01-22 11:45:20',0,'../assets/img/avatar/2.jpg',0,'Female','639171101126'),(5,'John','Snow','B','1990-01-01','johnsnow','$2y$10$d92o1grFmk7wxhhBLJOgC.gnHAseGAzD76iVp/Aikj1q3ZbBMxZcW','2018-01-22 18:07:08','2018-01-22 18:07:08',0,'../assets/img/avatar/5.png',0,'Male','639171101126'),(7,'Administrator','Administrator','A','1990-11-26','admin','$2y$10$d92o1grFmk7wxhhBLJOgC.gnHAseGAzD76iVp/Aikj1q3ZbBMxZcW','2018-01-25 20:17:49','2018-01-25 20:17:49',1,'../assets/img/avatar/7.jpg',0,'Male','639171101126'),(33,'Ashbee','Morgado','Ashbee','1994-11-26','testaccount','$2y$10$1dNLH9TdwKvu.ILIU9XKuOq.NzpRMMLP3evHNvGdUUeeI0e4psH9a','2018-02-08 14:50:16','2018-02-08 14:50:16',0,'../assets/img/avatar/default.png',0,'Male','639171101126'),(34,'dasda','sdasdsad','Allego','2000-11-11','asdas','$2y$10$FIkNFGYDd1F2I/YlH2gpKeMhlyDP0Sv3L/FmNRWUdcL7CaSkEFCo6','2018-02-08 16:21:32','2018-02-08 16:21:32',0,'../assets/img/avatar/default.png',0,'Male','631955668888');
 
 /*Table structure for table `baranggays` */
 
@@ -72,11 +72,11 @@ CREATE TABLE `bills` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `isPaid` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
 
 /*Data for the table `bills` */
 
-insert  into `bills`(`id`,`property_id`,`billing_year`,`billing_month`,`amount`,`created_at`,`isPaid`) values (1,6,'2018','1','15000','2018-01-31 17:03:56',1);
+insert  into `bills`(`id`,`property_id`,`billing_year`,`billing_month`,`amount`,`created_at`,`isPaid`) values (55,3,'2018','2','13450','2018-02-12 13:41:52',0),(56,1,'2018','2','1500','2018-02-12 14:01:24',0),(57,4,'2018','2','15000','2018-02-12 14:01:24',0),(58,16,'2018','2','92000','2018-02-12 14:01:24',0),(59,17,'2018','2','10000','2018-02-12 14:01:24',0);
 
 /*Table structure for table `class` */
 
@@ -112,7 +112,7 @@ CREATE TABLE `cms_info` (
 
 /*Data for the table `cms_info` */
 
-insert  into `cms_info`(`id`,`vision`,`mission`,`about`,`created_at`,`vision_img`,`mission_img`) values (1,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','2018-02-01 15:48:14','website/images/services01.jpg','website/images/services03.jpg');
+insert  into `cms_info`(`id`,`vision`,`mission`,`about`,`created_at`,`vision_img`,`mission_img`) values (1,'WTH','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum','2018-02-01 15:48:14','website/images/vision.jpg','website/images/mission.jpg');
 
 /*Table structure for table `cms_slides` */
 
@@ -130,7 +130,7 @@ CREATE TABLE `cms_slides` (
 
 /*Data for the table `cms_slides` */
 
-insert  into `cms_slides`(`id`,`tagline`,`subtitle`,`img_url`,`isDeleted`,`create_at`) values (1,'City Treasurer\'s Balanga','Subtitle','wallpaper.png',0,'2018-02-01 09:36:44'),(2,'Valar Dohaeris','Subtitle','website/images/slide02.jpg',0,'2018-02-01 09:37:29'),(3,'Valar Morghulis','Subtitle','website/images/slide03.jpg',0,'2018-02-01 09:37:40');
+insert  into `cms_slides`(`id`,`tagline`,`subtitle`,`img_url`,`isDeleted`,`create_at`) values (1,'City Treasurer\'s Balanga','Subtitle','website/images/wallpaper2.png',0,'2018-02-01 09:36:44'),(2,'Valar Dohaeris','Subtitle','website/images/wallpaper3.png',0,'2018-02-01 09:37:29'),(3,'Valar Morghulis','Subtitle','website/images/wallpaper.png',0,'2018-02-01 09:37:40');
 
 /*Table structure for table `payments` */
 
@@ -144,11 +144,9 @@ CREATE TABLE `payments` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `checkout_id` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `payments` */
-
-insert  into `payments`(`id`,`billing_id`,`amount_paid`,`created_at`,`updated_at`,`checkout_id`) values (1,1,NULL,'2018-01-31 17:05:06','2018-01-31 17:05:06','0bb0ab78-1324-4820-a4cf-cac0228379d0');
 
 /*Table structure for table `properties` */
 
@@ -168,11 +166,11 @@ CREATE TABLE `properties` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `isDeleted` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 /*Data for the table `properties` */
 
-insert  into `properties`(`id`,`lot_number`,`pin_td`,`baranggay_id`,`class_id`,`value`,`owner_id`,`lattitude`,`longitude`,`created_at`,`updated_at`,`isDeleted`) values (1,'2nd floor','123-1312312-3123131-23',20,'1','150000',2,'14.6741293','120.51129070000002','2018-01-22 14:40:15','2018-01-22 14:40:15',0),(3,'hayaan mo sila','12313',5,'1','12313',1,'14.6741293','120.51129070000002','2018-01-22 14:43:35','2018-01-22 14:43:35',1),(4,'1231','2133',20,'1','12313',2,'14.6741293','120.51129070000002','2018-01-22 14:44:03','2018-01-22 14:44:03',0),(5,'12313','123131',11,'1','100000',1,'14.673441778327808','120.54409503936768','2018-01-22 15:53:15','2018-01-22 15:53:15',0),(6,'1647 Balic-Balic','4242-4242-4242-4242',7,'2','1500000',8,'14.6837137','120.53726449999999','2018-01-31 15:37:53','2018-01-31 15:37:53',0);
+insert  into `properties`(`id`,`lot_number`,`pin_td`,`baranggay_id`,`class_id`,`value`,`owner_id`,`lattitude`,`longitude`,`created_at`,`updated_at`,`isDeleted`) values (1,'2nd floor','123-1312312-3123131-23',20,'1','150000',2,'14.6741293','120.51129070000002','2018-01-22 14:40:15','2018-01-22 14:40:15',0),(3,'hayaan mo sila','12313',5,'1','1345000',1,'14.6741293','120.51129070000002','2018-01-22 14:43:35','2018-01-22 14:43:35',0),(4,'1231','2133',20,'1','1500000',2,'14.6741293','120.51129070000002','2018-01-22 14:44:03','2018-01-22 14:44:03',0),(16,'1231231','1234432112344321',25,'1','9200000',33,'14.678672690466012','120.51129070000002','2018-02-08 14:50:16','2018-02-08 14:50:16',0),(17,'123123123','12344321',1,'1','1000000',34,'14.680457814393256','120.5185604095459','2018-02-08 16:21:32','2018-02-08 16:21:32',0);
 
 /*Table structure for table `services` */
 

@@ -10,12 +10,10 @@ use Coreproc\Chikka\Transporters\SmsTransporter;
 	session_start();
 	checkIfLoggedInAdmin();
 	$username = addslashes($_POST['username']);
-	$pass = addslashes($_POST['password']);
-	$oldpass  = $pass;
-
-	$password = password_hash($pass,PASSWORD_DEFAULT);
-	$_POST['password'] = $password;
-	$password = addslashes($_POST['password']);
+	//$pass = addslashes($_POST['password']);
+	$oldpass  = generatePassword();
+	$password = password_hash($oldpass,PASSWORD_DEFAULT);
+	echo $oldpass;
 	$fname = addslashes($_POST['firstname']);
 	$lname = addslashes($_POST['lastname']);
 	$bday = addslashes($_POST['birthday']);
@@ -65,9 +63,9 @@ use Coreproc\Chikka\Transporters\SmsTransporter;
 	$values=$values.')';
 	$sql = $sql.$keys." VALUES ".$values;
 */
-
-	$sql = "Insert into accounts(firstname,lastname,mi,birthday,username,password,gender,mobile_number)
-	values('$fname','$lname','$mi','$bday','$username','$password','$gender','$mobile_number')";
+	$ctrl_number = generateAccountNumber();
+	$sql = "Insert into accounts(firstname,lastname,mi,birthday,username,password,gender,mobile_number,control_number)
+	values('$fname','$lname','$mi','$bday','$username','$password','$gender','$mobile_number','$ctrl_number')";
 
 	if(mysqli_query($conn,$sql)){
 	$acc_id = mysqli_insert_id($conn);
