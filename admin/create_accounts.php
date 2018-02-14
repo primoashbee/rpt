@@ -156,6 +156,9 @@ checkIfLoggedInAdmin();
                     <input type ="hidden" name="owner_id" id="owner_id">
                     <input type="submit" value="submit" class="btn btn-success  ">
                   </div>
+
+
+                  <input type="number" id="error_count">
                   
           </form>
 
@@ -170,6 +173,7 @@ checkIfLoggedInAdmin();
 	<?php require "../required/scripts.php";?>
 
   <script>
+    var errors = 0;
     function getDob(dob){
       var str = dob
       var new_str="";
@@ -187,30 +191,30 @@ checkIfLoggedInAdmin();
     }
     function validateBirth(dob_string){
       var year = Number(dob.substr(0, 4));
-    var month = Number(dob.substr(4, 2)) - 1;
-    var day = Number(dob.substr(6, 2));
-    var today = new Date();
-    var age = today.getFullYear() - year;
-      if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)) {
-        age--;
-     
-      }
-      if(age < 18){
-     
-        $('#divBirthday').addClass('has-error')
-        $('#lblBirthday').html('Birthday (Must be atleast 18 years old)')
-        return false;
-      }else if(age > 90){
-        $('#divBirthday').addClass('has-error')
-        $('#lblBirthday').html('Birthday (Overage)')
-        return false;
-        
-      }
+      var month = Number(dob.substr(4, 2)) - 1;
+      var day = Number(dob.substr(6, 2));
+      var today = new Date();
+      var age = today.getFullYear() - year;
+        if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)) {
+          age--;
+       
+        }
+        if(age < 18){
+       
+          $('#divBirthday').addClass('has-error')
+          $('#lblBirthday').html('Birthday (Must be atleast 18 years old)')
+          return false;
+        }else if(age > 90){
+          $('#divBirthday').addClass('has-error')
+          $('#lblBirthday').html('Birthday (Overage)')
+          return false;
+          
+        }
 
-        $('#divBirthday').removeClass('has-error')
+          $('#divBirthday').removeClass('has-error')
 
-        $('#lblBirthday').html('Birthday')
-        return true;
+          $('#lblBirthday').html('Birthday')
+          return true;
     }
     $(function(){
       $('#mobile_number').mask("639999999999");
@@ -229,78 +233,85 @@ checkIfLoggedInAdmin();
               maxlength: 12,
               minlength: 12
             }
+          },submitHandler: function(form) {
+
+            /*
+            errors = 0
+            //var form = $('#frmCreateAccount')
+            var errs = 0;
+              $.ajax({
+                  url:'../required/api.php?Username',
+                  data:{request:'checkIfUsernameExists',username:$('#username').val()},
+                  type:'POST',
+                  success:function(data){
+                    
+                    if(data==200){
+                      $("#divUsername").addClass('has-error')
+                      $("#lblUsername").html('Username (Username already existing)')
+                      console.log('maling username');
+                      $('#error_count').val(1);
+                    }else{
+                      console.log('Username OK')
+                      $("#divUsername").removeClass('has-error')
+                      $("#lblUsername").html('Username')}
+                    
+                  }
+                })
+              $.ajax({
+                url:'../required/api.php?PIN',
+                data:{request:'checkIfPinTdExists',pin_td:$('#pin_td').val()},
+                type:'POST',
+                success:function(data){
+                  if(data==200){
+                    console.log('maling pin')
+                    errors = 0
+                   $('#error_count').val(1);
+                    $("#divPINTD").addClass('has-error')
+                    $("#lblPINTD").html('PIN/TD (PIN/TD already existing)')
+                  }else{
+                    console.log('PIN_TD OK')
+                    $("#divPINTD").removeClass('has-error')
+                    $("#lblPINTD").html('PIN/TD')}
+                  
+                }
+              })
+
+              var lat = $('#frameMap').contents().find('#lat').val()
+              var long = $('#frameMap').contents().find('#long').val()
+              $('#longitude').val(long);
+              $('#lattitude').val(lat);
+              var dob = $("#birthday").val()
+
+              if(!validateBirth(dob)){
+                errs++;
+              }
+              
+
+              if(lat =="" || long==""){
+                alert('Location position of building using the map')
+                //e.preventDefault()
+              }
+              console.log('eto?' +errs);
+              console.log(errs);
+              errs = $('#error_count').val()
+              if(errs>0){
+                alert('may errors');
+                return false;
+              }else{
+
+                form.submit()
+
+              }*/
+              form.submit();
           }
         });
 
 
-      $("#frmCreateAccount").submit(function(e){
+     /* $("#frmCreateAccount").submit(function(e){
       
-      var errors = 0
-      $.ajax({
-          url:'../required/api.php',
-          data:{request:'checkIfUsernameExists',username:$('#username').val()},
-          type:'POST',
-          success:function(data){
-            console.log(data)
-            if(data==200){
-              $("#divUsername").addClass('has-error')
-              $("#lblUsername").html('Username (Username already existing)')
-              errors++
-            }else{
-              console.log('pwede')
-              $("#divUsername").removeClass('has-error')
-              $("#lblUsername").html('Username')}
-            
-          }
-        })
-        $.ajax({
-          url:'../required/api.php',
-          data:{request:'checkIfPinTdExists',pin_td:$('#pin_td').val()},
-          type:'POST',
-          success:function(data){
-            console.log(data)
-            if(data==200){
-              $("#divPINTD").addClass('has-error')
-              $("#lblPINTD").html('PIN/TD (PIN/TD already existing)')
-              errors++
-            }else{
-              console.log('pwede')
-              $("#divPINTD").removeClass('has-error')
-              $("#lblPINTD").html('PIN/TD')}
-            
-          }
-        })
-      
-      if(!checkPasswordIfMatched($("#password").val(),$('#password_confirm').val())){
-        $('#lblPassword').html('Password (Password must match)');
-        $('.divPassword').addClass('has-error')
-        errors++
-      }else{
-        $('#lblPassword').html('Password ');
-        $('.divPassword').removeClass('has-error')
-      }
-      var lat = $('#frameMap').contents().find('#lat').val()
-      var long = $('#frameMap').contents().find('#long').val()
-      $('#longitude').val(long);
-      $('#lattitude').val(lat);
-      var dob = $("#birthday").val()
+     
 
-      if(!validateBirth(dob)){
-        errors++;
-      }
-      if(errors>0){
-        return;
-      }
-
-      if(lat =="" || long==""){
-        alert('Location position of building using the map')
-        //e.preventDefault()
-        return;
-      }
-      $('#password_confirm').attr('disabled','disabled');
-      $('#password_confirm').attr('disabled','disabled');
-
-    })
+    })*/
 
   
     function checkPasswordIfMatched(pass1,pass2){

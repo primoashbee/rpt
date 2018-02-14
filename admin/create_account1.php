@@ -62,7 +62,21 @@ use Coreproc\Chikka\Transporters\SmsTransporter;
 	$keys=$keys.')';
 	$values=$values.')';
 	$sql = $sql.$keys." VALUES ".$values;
+
 */
+
+
+	if(checkIfUsernameExists($username)==200){
+		$_SESSION['msg']  = 'USERNAME ALREADY TAKEN'; 
+		header('location:create_accounts.php');
+		exit;
+	}
+	if(checkIfPinTdExists($pin_td)==200){
+		$_SESSION['msg']  = 'PIN/TD ALREADY TAKEN'; 
+		header('location:create_accounts.php');
+		exit;
+	}
+
 	$ctrl_number = generateAccountNumber();
 	$sql = "Insert into accounts(firstname,lastname,mi,birthday,username,password,gender,mobile_number,control_number)
 	values('$fname','$lname','$mi','$bday','$username','$password','$gender','$mobile_number','$ctrl_number')";
