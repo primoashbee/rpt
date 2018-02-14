@@ -74,7 +74,10 @@ use Coreproc\Chikka\Transporters\SmsTransporter;
 	
 		if(mysqli_query($conn,$sql)){
 		$name = $fname.' '.$lname;
-		$msg = "Good Day, $name Your account is now created on $GLOBAL_WEBSITE_NAME! Here are your credentials. Username: $username. Password: $oldpass ";
+		$msg = 
+		"Good Day, $name Your account is now created on $GLOBAL_WEBSITE_NAME! 
+		Here are your credentials.
+		Username: $username. Password: $oldpass ";
   
 		$clientId = '07a28c3017c007c0e318b6a1b4e0abff44dd23b1b88a5d360b75a268ac30374e';
 		$secretKey = 'b73fd9702ab4d553d71585b1c7ce9eb149e1a42964ced1bbaa1bba13d911607f';

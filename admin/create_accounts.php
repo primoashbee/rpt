@@ -284,17 +284,17 @@ checkIfLoggedInAdmin();
       $('#longitude').val(long);
       $('#lattitude').val(lat);
       var dob = $("#birthday").val()
+
       if(!validateBirth(dob)){
         errors++;
       }
       if(errors>0){
-        e.preventDefault()
         return;
       }
 
       if(lat =="" || long==""){
         alert('Location position of building using the map')
-        e.preventDefault()
+        //e.preventDefault()
         return;
       }
       $('#password_confirm').attr('disabled','disabled');

@@ -45,8 +45,7 @@ $homepage = getHomepage();
         <div class="row">
           <div class="social-icon">
             <ul>
-  
-              <li><a class="color02 color01-hover03" href="login.php">Log In <i class="fa fa-sign-in"></i></a>
+              <li style="margin-top:3px"><a class="color02 color01-hover03" href="login.php" style="font-weight:bold;color:#777;margin-top:15px;padding-bottom:15px;line-height:20px;font-size:16px">LOG IN <i class="fa fa-sign-in"></i></a>
               </li>
             </ul>
           </div>
